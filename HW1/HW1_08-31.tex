@@ -6,11 +6,57 @@
     
 \prob{1.2}{Derive the cyclicity (1.24) of the trace from Eq. (1.23).}
 
+Using the definition of the trace, we can write
+\begin{eqnarray}
+    \label{eq:trace-AB}
+    {\rm Tr}(AB) = \sum_{k=1}^{n} (AB)_{kk} = \sum_{k=1}^{n} \sum_{\ell=1}^{n} A_{k\ell}B_{\ell k}
+.\end{eqnarray}
+Note that this sum is symmetric in the indices $\{ k,\ell \} $, and since $A_{k\ell}$ and $B_{\ell k}$ are just scalars 
+\begin{eqnarray}
+    \label{eq:trace-BA}
+    \eqbox{
+    {\rm Tr}(AB) = \sum_{\ell=1}^{n} \sum_{k=1}^{n} B_{\ell k}A_{k\ell} = {\rm Tr}(BA)
+    } 
+.\end{eqnarray}
+
 
 \prob{1.3}{Show that $\left( AB \right)^{\rm T} = B^{\rm T}A^{\rm T}$, which is Eq.~(1.26).}
 
+Recall the definition of a matrix transpose: $(A^{\rm T})_{ij} = A_{ji}$, so
+\begin{eqnarray}
+    \label{eq:transpose-AB}
+    (AB)^{\rm T}_{ij} = (AB)_{ji} = \sum_{k=1}^{n} A_{jk}B_{ki} = \sum_{k=1} B_{ik}^{\rm T} A_{kj}^{\rm T} = (B^{\rm T}A^{\rm T})_{ij}
+.\end{eqnarray}
+Hence,
+\begin{eqnarray}
+    \label{eq:prob3-result}
+    \eqbox{
+    (AB)^{\rm T} = B^{\rm T}A^{\rm T}
+    }
+.\end{eqnarray}
+
+
 
 \prob{1.5}{Show that $(AB)^{\dagger} = B^{\dagger}A^{\dagger}$, which is Eq.~(1.29).}
+
+Recall that the hermitian adjoint of a matrix is just $A^{\dagger} = (A^{\rm T})^{*}$, so
+\begin{eqnarray}
+    \label{eq:adjoint-AB}
+    (AB)^{\dagger} = ((AB)^{\rm T})^{*} = (B^{\rm T}A^{\rm T})^{*}
+.\end{eqnarray}
+Observe that 
+\begin{eqnarray}
+    \label{eq:complex-conj-product}
+    (AB)^{*}_{ij} = \left( \sum_{k=1}^{n} A_{ik}B_{kj} \right)^{*} = \sum_{k=1}^{n} A^{*}_{ik}B^{*}_{kj} = (A^{*}B^{*})_{ij}
+,\end{eqnarray}
+so \eref{adjoint-AB} becomes
+\begin{eqnarray}
+    \label{eq:adjoint-BA}
+    \eqbox{
+        (AB)^{\dagger} = (B^{\rm T}A^{\rm T})^{*} = (B^{\rm T})^{*}(A^{\rm T})^{*} = B^{\dagger}A^{\dagger}
+    }
+.\end{eqnarray}
+
 
 
 \prob{1.7}{Show that the two $4 \times 4$ matrices (1.46) satisfy Grassman's algebra (1.11) for $n=2$.}
