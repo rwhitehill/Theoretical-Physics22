@@ -61,8 +61,103 @@ so \eref{adjoint-AB} becomes
 
 \prob{1.7}{Show that the two $4 \times 4$ matrices (1.46) satisfy Grassman's algebra (1.11) for $n=2$.}
 
+The matrices in Eq.~(1.46) are given by
+\begin{eqnarray}
+    \label{eq:matrices-1.46}
+    \theta_1 = 
+    \begin{pmatrix}
+    0 & 0 & 1 & 0 \\
+    0 & 0 & 0 & -1 \\
+    0 & 0 & 0 & 0 \\
+    0 & 0 & 0 & 0
+    \end{pmatrix}
+    \quad
+    \mbox{and}
+    \quad
+    \theta_2 = 
+    \begin{pmatrix}
+        0 & 1 & 0 & 0 \\
+        0 & 0 & 0 & 0 \\
+        0 & 0 & 0 & 1 \\
+        0 & 0 & 0 & 0
+    \end{pmatrix}
+.\end{eqnarray}
+Using the kronecker delta, notice that we can write the components of $\theta_1$ and $\theta_2$ as follows:
+\begin{eqnarray}
+    \label{eq:components-th12}
+    (\theta_1)_{ij} = \delta_{i 1}\delta_{j 3} - \delta_{i 2}\delta_{j 4} \\
+    (\theta_2)_{ij} = \delta_{i 1}\delta_{j 2} + \delta_{i 3}\delta_{j 4}
+.\end{eqnarray}
+
+Thus,
+\begin{align}
+    \label{eq:th1-th2-prod}
+    (\theta_1\theta_2)_{ij} &= \sum_{k=1}^{n} (\theta_1)_{ik}(\theta_2)_{kj} \\
+                            &= \sum_{k=1}^{n} \delta_{i 1}\delta_{j 2}\delta_{k 3}\delta_{k 1} + \delta_{i 1}\delta_{j 4}\delta_{k 3}\delta_{k 3} - \delta_{i 2}\delta_{j 2}\delta_{k 4}\delta_{k 1} - \delta_{i 2}\delta_{j 4}\delta_{k 4}\delta_{k 3} \\
+                            &= \delta_{i 1}\delta_{j 4}
+.\end{align}
+In the same way,
+\begin{align}
+    \label{eq:th2-th1-prod}
+    (\theta_2\theta_1)_{ij} &= \sum_{k=1}^{n} (\theta_2)_{ik}(\theta_1)_{kj} \\
+                            &= \sum_{k=1}^{n} \delta_{i 1}\delta_{j 3}\delta_{k 2}\delta_{k 1} - \delta_{i 1}\delta_{j 4}\delta_{k 2}\delta_{k 2} + \delta_{i 3}\delta_{j 3}\delta_{k 4}\delta_{k 1} - \delta_{i 3}\delta_{j 4}\delta_{k 4}\delta_{k 2} \\
+                            &= -\delta_{i 1}\delta_{j 4}
+.\end{align}
+Thus, since addition is defined component wise, we have the anticommutator
+\begin{align}
+    \label{eq:anticommutator}
+    ({\theta_1,\theta_2})_{ij} &= {(\theta_1)_{ij},(\theta_2)_{ij}} = \delta_{i_1}\delta_{j_4} + (-\delta_{i 1}\delta_{j 4}) = 0 \\
+    \Rightarrow& \eqbox{\{\theta_1,\theta_2\} = 0}
+.\end{align}
+
 
 \prob{1.12}{Show that the Minkowski product $(x,y) = \va{x} \cdot \va{y} - x^{0}y^{0}$ of two 4-vectors $x$ and $y$ is an inner product obeying the rules (1.78,1.79,1.84).}
+
+The three properties we check for this inner product are as follows:
+\begin{subequations} 
+\begin{eqnarray}
+    \label{eq:prop-1}
+    (f,g) = (g,f)^{*}
+\end{eqnarray}
+\begin{eqnarray}
+    \label{eq:prop-2}
+    (f,zg+wh) = z(f,g) + w(f,h)
+\end{eqnarray}
+\begin{eqnarray}
+    \label{eq:prop-3}
+    (f,g) = 0 \mbox{ for all } f \in V \Rightarrow g = 0
+.\end{eqnarray}
+\end{subequations}
+For the following, we assume that $x,y$ are real 4-vectors.
+That is, their components are real numbers.
+
+From this assumption, \eref{prop-1} follows trivally
+\begin{eqnarray}
+    \label{eq:prop-1-mink}
+    \eqbox{
+    (x,y) = \va*{x} \cdot \va*{y} - x^{0}y^{0} = \va*{y} \cdot \va*{x} - y^{0}x^{0} = (y,x) 
+    }
+.\end{eqnarray}
+Additionally, \eref{prop-2} is satisfied as follows:
+\begin{align}
+    \label{eq:prop-2-mink}
+    (x,\alpha y + \beta z) &= \va*{x} \cdot (\alpha \va*{y} + \beta \va*{z}) - x^{0}(\alpha y^{0} + \beta z^{0}) \notag \\
+                           &= \alpha \va*{x} \cdot \va*{y} + \beta \va*{x} \cdot \va*{z} - \alpha x^{0}y^{0} - \beta x^{0}z^{0} \notag \\
+                           &= \alpha \left( \va*{x} \cdot \va*{y} - x^{0}y^{0} \right) + \beta \left( \va*{x} \cdot \va*{z} - x^{0} z^{0} \right) \notag \\
+                           &= \eqbox{\alpha (x,y) + \beta (x,z)}
+.\end{align}
+Finally, we prove \eref{prop-3} as follows.
+Suppose that $(x,y) = 0$ for all $x$ but $y \ne 0$.
+Then, there is some component of $y$, say $y^{i}$ such that $y^{i} \ne 0$.
+Obviously then, we could choose $x^{i} = 1$ and the rest of the components of $x$ to be zero, meaning that 
+\begin{eqnarray}
+    \label{eq:prod-3-mink}
+    (x,y) = \begin{cases}
+        y^{i} & \mbox{if } i \ne 0 \\
+        y^{i} & \mbox{if } i = 0
+    \end{cases}
+.\end{eqnarray}
+That is, it must be the case that $y \equiv 0$, otherwise there is always at least one choice of $x$ such that $(x,y)$ is nonzero, which contradicts the original assumption.
 
 
 \prob{1.18}{Use the Gram-Schmidt method to find orthonormal linear combinations of the three vectors
@@ -91,8 +186,51 @@ so \eref{adjoint-AB} becomes
 .\end{eqnarray}
 }
 
+Notice that $\vu*{u}_{1} = \va*{s}_{1}$ is already normalized, so we can find an orthonormal vector to $\vu*{u}_{2}$ from $\va*{s}_{2}$ as
+\begin{align}
+    \label{eq:u2-vec}
+    \va*{u}_{2} &= \vu*{s}_{2} - (\vu*{u}_{1},\va*{s}_{2})\vu*{u}_{1} \\
+                &= \begin{pmatrix} 1 \\ 0 \\ 0\end{pmatrix} - \begin{pmatrix} 1 \\ 0 \\ 0\end{pmatrix} \\
+                &= \begin{pmatrix} 0 \\ 1 \\ 0\end{pmatrix}
+.\end{align}
+Noting that $\va*{u}_{2}$ is normalized, we have $\vu*{u}_{2} = \va*{u}_{2}$.
+Lastly, we can repeat the process for the third vector.
+\begin{align}
+    \label{eq:u3-vec}
+\va*{u}_{3} &= \va*{s}_{3} - (\vu*{u}_{1},\va*{s}_{3})\vu*{u}_{1} - (\vu*{u}_{2},\va*{s}_{3})\vu*{u}_{2} \\
+           & = \begin{pmatrix} 1 \\ 1 \\ 1\end{pmatrix} - \begin{pmatrix} 1 \\ 0 \\ 0\end{pmatrix} - \begin{pmatrix} 0 \\ 1 \\ 0\end{pmatrix} \\ 
+           &= \begin{pmatrix}
+    0 \\ 0 \\ 1
+    \end{pmatrix}
+.\end{align}
+Again, $\va*{u}_{3} = \vu*{u}_{3}$ since $\va*{u}_{3}$ is already normalized.
+Notice that these are just the standard basis vectors for a three dimensional vector space, so the orthonormal linear combinations of $\va*{s}_{1}$, $\va*{s}_{2}$, and $\va*{s}_{3}$ are
+\begin{align}
+    \label{orthonormal-vecs} 
+    \eqbox{
+    \vu*{u}_{1} = \va*{s}_{1}, \qquad
+    \vu*{u}_{2} = \va*{s}_{1} - \va*{s}_{2}, \qquad
+    \vu*{u}_{3} = \va*{s}_{1} - \va*{s}_{2} - \va*{s}_{3}
+    }
+.\end{align}
+
 
 \prob{1.21}{Show that a linear operator $A$ that is represented by a hermitian matrix (1.167) in an orthonormal basis satisfies $(g,Af) = (Ag,f)$.}
+
+Observe that
+\begin{align}
+    \label{eq:expand-inner-prod}
+    (g,Af) = g^{\dagger}Af
+,\end{align}
+where $g,f$ are column vectors and $A$ is represented by a matrix.
+Recalling that $(AB)^{\dagger} = B^{\dagger}A^{\dagger}$ and that $A^{\dagger} = A$ since $A$ is hermitian, \eref{expand-inner-prod} becomes
+\begin{eqnarray}
+    \label{eq:inner-prod-result}
+    \eqbox{
+    (g,Af) = (A^{\dagger}g)^{\dagger}f = (A g)^{\dagger} f = (Ag,f)
+}
+.\end{eqnarray}
+
 
 
 \end{document}
