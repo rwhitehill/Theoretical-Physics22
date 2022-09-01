@@ -1,4 +1,4 @@
-\def\duedate{08/31/2022}
+\def\duedate{09/07/2022}
 \def\HWnum{1}
 \input{../preamble.tex}
 
@@ -83,11 +83,11 @@ The matrices in Eq.~(1.46) are given by
     \end{pmatrix}
 .\end{eqnarray}
 Using the kronecker delta, notice that we can write the components of $\theta_1$ and $\theta_2$ as follows:
-\begin{eqnarray}
+\begin{align}
     \label{eq:components-th12}
-    (\theta_1)_{ij} = \delta_{i 1}\delta_{j 3} - \delta_{i 2}\delta_{j 4} \\
-    (\theta_2)_{ij} = \delta_{i 1}\delta_{j 2} + \delta_{i 3}\delta_{j 4}
-.\end{eqnarray}
+    (\theta_1)_{ij} &= \delta_{i 1}\delta_{j 3} - \delta_{i 2}\delta_{j 4} \\
+    (\theta_2)_{ij} &= \delta_{i 1}\delta_{j 2} + \delta_{i 3}\delta_{j 4}
+.\end{align}
 
 Thus,
 \begin{align}
@@ -208,9 +208,11 @@ Notice that these are just the standard basis vectors for a three dimensional ve
 \begin{align}
     \label{orthonormal-vecs} 
     \eqbox{
-    \vu*{u}_{1} = \va*{s}_{1}, \qquad
-    \vu*{u}_{2} = \va*{s}_{1} - \va*{s}_{2}, \qquad
-    \vu*{u}_{3} = \va*{s}_{1} - \va*{s}_{2} - \va*{s}_{3}
+     \begin{aligned}
+        \vu*{u}_{1} &= \va*{s}_{1}, \\
+        \vu*{u}_{2} &= \va*{s}_{1} - \va*{s}_{2}, \\
+        \vu*{u}_{3} &= \va*{s}_{1} - \va*{s}_{2} - \va*{s}_{3}
+     \end{aligned}
     }
 .\end{align}
 
@@ -230,6 +232,7 @@ Recalling that $(AB)^{\dagger} = B^{\dagger}A^{\dagger}$ and that $A^{\dagger} =
     (g,Af) = (A^{\dagger}g)^{\dagger}f = (A g)^{\dagger} f = (Ag,f)
 }
 .\end{eqnarray}
+
 
 
 
