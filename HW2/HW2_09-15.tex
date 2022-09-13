@@ -1,0 +1,383 @@
+\def\duedate{09/15/2022}
+\def\HWnum{2}
+\input{../preamble.tex}
+
+\begin{document}
+    
+\prob{1.28}{
+Use 
+\begin{eqnarray}
+    \label{eq:rotation-sq}
+    (\va*{\theta} \vdot \va*{\sigma})^2 = \theta^2\id
+.\end{eqnarray}
+to derive the expression
+\begin{eqnarray}
+    \label{eq:exp-sigma}
+    \exp(-i \va*{\theta} \vdot \va*{\sigma}/2) = \cos(\theta/2)\id - i \vu*{\theta} \vdot \va*{\sigma} \sin(\theta/2)
+,\end{eqnarray}
+for the $2 \times 2$ rotation matrix $\exp(-i \va*{\theta} \vdot \va*{\sigma}/2)$.
+}
+
+We use the Taylor series of the exponential to write
+\begin{align}
+    \label{eq:exp-sigma-worked}
+    e^{-i \va*{\theta} \vdot \va*{\sigma}/2} &= \sum_{n=0}^{\infty} \frac{1}{n!}(-\frac{i}{2} \va*{\theta} \vdot \va*{\sigma})^{n} = \sum_{n=0}^{\infty} \frac{1}{(2n)!}(-\frac{i}{2} \va*{\theta} \vdot \va*{\sigma})^{2n} + \sum_{n=0}^{\infty} \frac{1}{(2n+1)!}(-\frac{i}{2} \va*{\theta} \vdot \va*{\sigma})^{2n+1} \notag \\
+                                             &= \sum_{n=0}^{\infty} \frac{(-1)^{n}}{(2n)!} \left(\frac{\theta^2}{4} \right)^{n} - \frac{i}{2} \left( \theta \vdot \va*{\sigma} \right) \sum_{n=1}^{\infty} \frac{(-1)^{n}}{(2n+1)!}\left( \frac{\theta^2}{4} \right)^{n} \notag \\
+                                             &= \sum_{n=0}^{\infty} \frac{(-1)^{n}}{(2n)!} \left( \frac{\theta}{2} \right)^{2n} - \frac{i}{2}\va*{\theta} \vdot \va*{\sigma} \sum_{n=0}^{\infty} \left[ \frac{2}{\theta}\left( \frac{\theta}{2} \right)^{2n+1} \right] \\
+                                             &= \eqbox{\cos(\frac{\theta}{2})\id - i \vu*{\theta} \vdot \va*{\sigma} \sin(\frac{\theta}{2})}
+.\end{align}
+
+
+
+\prob{1.29}{
+Compute the characteristic equation for the matrix $-i \va*{\theta} \vdot \va*{J}$ in which the generators are $(J_{k})_{ij} = i\epsilon_{ijk}$ is totally antisymmetric with $\epsilon_{123} = 1$.
+}
+
+Using the generator equation, we can explicitly write the matrices $J_{i}$ for $i = 1,2,3$.
+\begin{eqnarray}
+    \label{eq:J-matrices}
+    J_{1} = i
+    \begin{pmatrix}
+    0 & 0 & 0 \\
+    0 & 0 & -1 \\
+    0 & -1 & 0
+    \end{pmatrix},
+    \quad
+    J_{2} = i
+    \begin{pmatrix}
+    0 & 0 & 1 \\
+    0 & 0 & 0 \\
+    1 & 0 & 0
+    \end{pmatrix},
+    \quad
+    J_{3} = i
+    \begin{pmatrix}
+    0 & -1 & 0 \\
+    0 & 0 & 0 \\
+    0 & 0 & 0
+    \end{pmatrix}
+.\end{eqnarray}
+We can then define $\va*{\theta} = (\theta_1,\theta_2,\theta_3)$ and $\va*{J} = (J_1,J_2,J_3)$ so
+\begin{align}
+    \label{eq:characteristic-eq}
+    {\rm det}(-i \va*{\theta} \vdot \va*{J} - \lambda \id) &= 
+    \begin{vmatrix}
+        -\lambda & -\theta_3 & -\theta_2 \\
+        \theta_3 & -\lambda & \theta_1 \\
+        \theta_2 & -\theta_1 & -\lambda
+    \end{vmatrix}
+    \\
+                                                           &=
+    -\lambda(\lambda^2 + \theta_1^2) + \theta_3(-\theta_3\lambda - \theta_1\theta_2) - \theta_2(-\theta_3\theta_1 + \theta_2\lambda) \\
+                                                           &= \eqbox{-\lambda(\lambda^2 + \theta^2)}
+.\end{align}
+
+
+
+\prob{1.30}{
+Use the characteristic equation of exercise 1.29 to derive the identities
+\begin{eqnarray}
+    \label{eq:1-30_identities}
+    \begin{aligned}
+        &\exp(-i \va*{\theta} \vdot \va*{J}) = \cos{\theta}\id - i \vu*{\theta} \vdot \va*{J}\sin{\theta} + (1 - \cos{\theta})\vu*{\theta}(\vu*{\theta})^{\rm T} \\
+        &\exp(-i \va*{\theta} \vdot \va*{J})_{ij} = \delta_{ij}\cos{\theta} - \sin{\theta}\epsilon_{ijk}\hat{\theta}_{k} + (1-\cos{\theta})\hat{\theta}_{i}\hat{\theta}_{j}
+    \end{aligned}
+.\end{eqnarray}
+for the $3 \times 3$ real orthogonal matrix $\exp(-i \va*{\theta} \vdot \va*{J})$.
+}
+
+
+\prob{1.32}{
+Consider the $2 \times 3$ matrix $A$
+\begin{eqnarray}
+    \label{eq:1-32_A}
+    A = \begin{pmatrix}
+        1 & 2 & 3 \\
+        -3 & 0 & 1
+    \end{pmatrix}
+.\end{eqnarray}
+Perform the singular value decomposition $A = USV^{\rm T}$, where $V^{\rm T}$ the transpose of $V$.
+Use Matlab or another program to find the singular values and the real orthogonal matrices $U$ and $V$.
+
+}
+
+Notice that 
+\begin{eqnarray}
+    \label{eq:A-AT}
+    A^{\rm T} A = V \Sigma^{\rm T} \Sigma V^{\rm T}
+.\end{eqnarray}
+so the eigenvalues of $A^{\rm T} A$ are the squares of the singular values, and the eigenvectors form the columns of $V$. 
+Computing the eigenvalues of $A^{\rm T} A$, we solve the characteristic equation for $A^{\rm T} A$:
+\begin{eqnarray}
+    \label{eq:AT-A}
+    \det(A^{\rm T} A - \lambda \id) = 
+    \begin{vmatrix}
+        10 - \lambda & 2 & 0 \\
+        2  & 4 - \lambda & 6 \\
+        0  & 6 & 10 - \lambda 
+    \end{vmatrix}
+    =
+    0
+    \Rightarrow \lambda = 14,~10,~0
+.\end{eqnarray}
+Hence, our singular values are $\sigma_1 = \sqrt{14}$ and $\sigma_2 = \sqrt{10}$.
+Solving for the column vectors of $V$, we solve $(A^{\rm T}A - \lambda_i \id) v_i$ for $i = 1,~2$ and normalize the eigenvectors.
+\begin{align*}
+    \label{eq:v1-v2}
+    \lambda_1 = 14:~
+    \begin{pmatrix}
+    -4 & 2 & 0 \\
+    2 & -10 & 6 \\
+    0 & 6 & -14
+    \end{pmatrix}
+    v_1
+    = 0
+    \Rightarrow v_1 = 
+    \begin{pmatrix}
+    1/\sqrt{14} \\ 2/\sqrt{14} \\ 3/\sqrt{14}
+    \end{pmatrix} \\
+    \lambda_2 = 10:~
+    \begin{pmatrix}
+    0 & 2 & 0 \\
+    2 & -6 & 6 \\
+    0 & 6 & 0
+    \end{pmatrix}
+    v_2
+    = 0
+    \Rightarrow v_2 = 
+    \begin{pmatrix}
+    -3/\sqrt{10} \\ 0 \\ 1/\sqrt{10} 
+    \end{pmatrix} 
+.\end{align*}
+Finally, we find $v_3$ by simply requiring that $\{ v_1,v_2,v_3 \} $ is an orthonormal set:
+\begin{eqnarray}
+    \label{eq:v3}
+    \begin{cases}
+    \begin{aligned}
+    v_1 \cdot v_3 = 0 \\
+    v_2 \cdot v_3 = 0 \\
+    |v_3| = 1
+    \end{aligned}
+    \end{cases}
+    \Rightarrow 
+    v_3 =
+    \begin{pmatrix}
+    1/\sqrt{35} \\ -5/\sqrt{35} \\ 3/\sqrt{35}
+    \end{pmatrix}
+.\end{eqnarray}
+Now, we can determine the column vectors of $U$ by solving $u_i = \frac{1}{\sigma_{i}}Av_{i}$:
+\begin{eqnarray}
+    \label{eq:u1-u2}
+    u_{1} = \frac{1}{\sqrt{14}}
+    \begin{pmatrix}
+        1 & 2 & 3 \\
+        -3 & 0 & 1
+    \end{pmatrix}
+    \begin{pmatrix}
+    1/\sqrt{14} \\ 2/\sqrt{14} \\ 3/\sqrt{14}
+    \end{pmatrix}
+    =
+    \begin{pmatrix}
+        1 \\ 0
+    \end{pmatrix}
+    \\
+    u_{2} = \frac{1}{\sqrt{10}}
+    \begin{pmatrix}
+    1 & 2 & 3 \\
+    -3 & 0 & 1
+    \end{pmatrix}
+    \begin{pmatrix}
+       -3/\sqrt{10} \\ 0 \\ 3/\sqrt{10} 
+    \end{pmatrix}
+    =
+    \begin{pmatrix}
+    0 \\ 1
+    \end{pmatrix}
+.\end{eqnarray}
+Therefore, we have our SVD matrices as
+\begin{eqnarray}
+    \label{eq:SVD-matrices}
+    \eqbox{
+    U = 
+    \begin{pmatrix}
+        1 & 0 \\
+        0 & 1
+    \end{pmatrix}
+    \quad
+    S =
+    \begin{pmatrix}
+        \sqrt{14} & 0 & 0 \\
+        0 & \sqrt{10} & 0
+    \end{pmatrix}
+    \quad
+    V = 
+    \begin{pmatrix}
+        1/\sqrt{14} & -3/\sqrt{10} &  1/\sqrt{35} \\
+        2/\sqrt{14} & 0 & -5/\sqrt{35} \\
+        3/\sqrt{14} & 1/\sqrt{10} & 3/\sqrt{35}
+    \end{pmatrix}
+    }       
+.\end{eqnarray}
+Using Wolfram, the matrices for the SVD are given as
+\begin{eqnarray}
+    \label{eq:SVD-matrices-wolfram}
+    U = 
+    \begin{pmatrix}
+        1 & 0 \\
+        0 & 1
+    \end{pmatrix}
+    \quad
+    S =
+    \begin{pmatrix}
+        \sqrt{14} & 0 & 0 \\
+        0 & \sqrt{10} & 0
+    \end{pmatrix}
+    \quad
+    V = 
+    \begin{pmatrix}
+        1/\sqrt{14} & -3/\sqrt{10} &  1/\sqrt{35} \\
+        \sqrt{2/7} & 0 & \sqrt{5/7} \\
+        3/\sqrt{14} & 1/\sqrt{10} & 3/\sqrt{35}
+    \end{pmatrix}
+,\end{eqnarray}
+which is the result given in \eref{SVD-matrices}.
+
+\prob{1.35}{
+    Consider the hamiltonian $H = \frac{1}{2} \hbar \omega \sigma_3$ where $\sigma_3$ is defined in (1.453).
+    The entropy $S$ of this system at temperature $T$ is $S = -k{\rm Tr}[\rho \ln(\rho)]$ in which the density operator $\rho$ is
+    \begin{eqnarray}
+        \label{eq:dens-op}
+        \rho = \frac{e^{-H/(kT)}}{{\rm Tr}\left[e^{-H/(kT)}\right]}
+    .\end{eqnarray}
+   Find expressions for the density operator $\rho$ and its entropy $S$. 
+}
+
+We have $\sigma_3 = \begin{pmatrix} 1 & 0 \\ 0 & - 1 \end{pmatrix}$, so
+\begin{eqnarray}
+    \label{eq:exp-H_kT}
+    e^{-\frac{\hbar \omega \sigma_3}{kT}} = 
+    \begin{pmatrix}
+        e^{-\frac{\hbar \omega}{2 k T}} & 0 \\
+        0 & e^{\frac{\hbar \omega}{2 k T}} 
+    \end{pmatrix}
+,\end{eqnarray}
+so 
+\begin{eqnarray}
+    \label{eq:rho-mat}
+    \eqbox{
+    \rho = \frac{1}{e^{-\frac{\hbar \omega}{2 k T}} + e^{\frac{\hbar \omega}{2kT}}}
+    \begin{pmatrix}
+        e^{-\frac{\hbar \omega}{2 k T}} & 0 \\
+        0 & e^{\frac{\hbar \omega}{2 k T}} 
+    \end{pmatrix}
+    =
+    \frac{2}{\cosh(\frac{\hbar \omega}{2kT})}
+    \begin{pmatrix}
+        e^{-\frac{\hbar \omega}{2 k T}} & 0 \\
+        0 & e^{\frac{\hbar \omega}{2 k T}} 
+    \end{pmatrix}
+}
+.\end{eqnarray}
+Additionally,
+\begin{eqnarray}
+    \label{eq:log-rho}
+    \ln(\rho) = 
+    \begin{pmatrix}
+        \ln[\frac{2e^{-\hbar \omega/2kT}}{\cosh(\hbar \omega / 2kT)}] & 0 \\
+        0 & \ln[\frac{2e^{\hbar \omega/2kT}}{\cosh(\hbar \omega / 2kT)}]
+    \end{pmatrix}
+,\end{eqnarray}
+giving
+\begin{align}
+%    \label{eq:entropy}
+    S &= -k{\rm Tr}[\rho \ln{\rho}] \notag \\
+      &= -\frac{2k}{\cosh(\hbar\omega/2kT)}\left[ e^{\hbar\omega/2kT}\ln\left[\frac{2e^{\hbar\omega/2kT}}{\cosh(\hbar\omega/2kT)}\right] + e^{-\hbar\omega/2kT}\ln\left[\frac{2e^{-\hbar\omega/2kT}}{\cosh(\hbar\omega/2kT)}\right] \right] \notag \\
+      &= \eqbox{ -2k \left[ \frac{\hbar\omega}{kT}\tanh{(\hbar\omega/2kT)} +  2\ln\left[ \frac{2}{\cosh(\hbar\omega/2kT)} \right] \right]
+  }
+.\end{align}
+
+
+
+\prob{1.37}{
+A system that has three fermionic states has three creation operators $a_{i}^{\dagger}$ and three annihilation operators $a_{k}$ which satisfy the anticommutation relations $\{ a_{i}, a_{k}^{\dagger} \} = \delta_{ik}$ and $\{ a_{i},a_{k} \} = \{ a_{i}^{\dagger}, a_{k}^{\dagger} \} = 0$ for $i,k = 1,2,3$.
+The eight states of the system are $\ket{t,u,v} \equiv (a_{1}^{\dagger})^{t}(a_{2}^{\dagger})^{u}(a_{3}^{\dagger})^{v}\ket{0,0,0}$.
+We can represent them by eight 8-vectors each of which has seven 0's with a 1 in position $4t + 2u + v + 1$. 
+How big should the matrices that represent the creation and annihilation operators be?
+Write down the three matrices that represent the three creation operators.
+}
+
+The matrices should be $8 \times 8$ such that operating on a vector gives a vector in the same space.
+For just one state, the creation operator is just
+\begin{eqnarray}
+    \label{eq:creation}
+    a^{\dagger} = 
+    \begin{pmatrix}
+    0 & 0 \\
+    1 & 0
+    \end{pmatrix}
+,\end{eqnarray}
+where
+\begin{eqnarray}
+    \label{eq:label}
+    \begin{pmatrix}
+    a \\ b
+    \end{pmatrix}
+    =
+    a \ket{0} + b\ket{1}
+.\end{eqnarray}
+The creation operator for the first state is just $a^{\dagger} \otimes \id \otimes \id$ such that 
+\begin{eqnarray}
+    \label{eq:creation-1}
+    \eqbox{
+    a_{1}^{\dagger} = 
+    \begin{pmatrix}
+        0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+        0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+        0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+        0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+        1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+        0 & 1 & 0 & 0 & 0 & 0 & 0 & 0 \\
+        0 & 0 & 1 & 0 & 0 & 0 & 0 & 0 \\
+        0 & 0 & 0 & 1 & 0 & 0 & 0 & 0
+    \end{pmatrix}
+}
+.\end{eqnarray}
+Similarly,
+\begin{eqnarray}
+    \label{eq:creation-2}
+    \eqbox{
+    a_{2}^{\dagger} = 
+    \begin{pmatrix}
+        0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+        0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+        1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+        0 & 1 & 0 & 0 & 0 & 0 & 0 & 0 \\
+        0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+        0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+        0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 \\
+        0 & 0 & 0 & 0 & 0 & 1 & 0 & 0
+    \end{pmatrix}
+}
+\end{eqnarray}
+and 
+\begin{eqnarray}
+    \label{eq:creation-3}
+    \eqbox{
+    a_{3}^{\dagger} = 
+    \begin{pmatrix}
+        0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+        1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+        0 & 1 & 0 & 0 & 0 & 0 & 0 & 0 \\
+        0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+        0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+        0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 \\
+        0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+        0 & 0 & 0 & 0 & 0 & 0 & 1 & 0
+    \end{pmatrix}
+}
+.\end{eqnarray}
+
+
+
+
+\end{document}
