@@ -30,30 +30,30 @@ We use the Taylor series of the exponential to write
 
 
 \prob{1.29}{
-Compute the characteristic equation for the matrix $-i \va*{\theta} \vdot \va*{J}$ in which the generators are $(J_{k})_{ij} = i\epsilon_{ijk}$ is totally antisymmetric with $\epsilon_{123} = 1$.
+Compute the characteristic equation for the matrix $-i \va*{\theta} \vdot \va*{J}$ in which the generators are $(J_{k})_{ij} = -i\epsilon_{kij}$ is totally antisymmetric with $\epsilon_{123} = 1$.
 }
 
 Using the generator equation, we can explicitly write the matrices $J_{i}$ for $i = 1,2,3$.
 \begin{eqnarray}
     \label{eq:J-matrices}
-    J_{1} = i
+    J_{1} = -i
     \begin{pmatrix}
     0 & 0 & 0 \\
     0 & 0 & -1 \\
     0 & -1 & 0
     \end{pmatrix},
     \quad
-    J_{2} = i
+    J_{2} = -i
     \begin{pmatrix}
-    0 & 0 & 1 \\
+    0 & 0 & -1 \\
     0 & 0 & 0 \\
     1 & 0 & 0
     \end{pmatrix},
     \quad
-    J_{3} = i
+    J_{3} = -i
     \begin{pmatrix}
-    0 & -1 & 0 \\
-    0 & 0 & 0 \\
+    0 & 1 & 0 \\
+    -1 & 0 & 0 \\
     0 & 0 & 0
     \end{pmatrix}
 .\end{eqnarray}
@@ -62,13 +62,13 @@ We can then define $\va*{\theta} = (\theta_1,\theta_2,\theta_3)$ and $\va*{J} = 
     \label{eq:characteristic-eq}
     {\rm det}(-i \va*{\theta} \vdot \va*{J} - \lambda \id) &= 
     \begin{vmatrix}
-        -\lambda & -\theta_3 & -\theta_2 \\
-        \theta_3 & -\lambda & \theta_1 \\
-        \theta_2 & -\theta_1 & -\lambda
+        -\lambda & -\theta_3 & \theta_2 \\
+        \theta_3 & -\lambda & -\theta_1 \\
+        -\theta_2 & \theta_1 & -\lambda
     \end{vmatrix}
     \\
                                                            &=
-    -\lambda(\lambda^2 + \theta_1^2) + \theta_3(-\theta_3\lambda - \theta_1\theta_2) - \theta_2(-\theta_3\theta_1 + \theta_2\lambda) \\
+    -\lambda(\lambda^2 + \theta_1^2) + \theta_3(-\theta_3\lambda - \theta_1\theta_2) + \theta_2(\theta_3\theta_1 - \theta_2\lambda) \\
                                                            &= \eqbox{-\lambda(\lambda^2 + \theta^2)}
 .\end{align}
 
@@ -85,6 +85,48 @@ Use the characteristic equation of exercise 1.29 to derive the identities
 .\end{eqnarray}
 for the $3 \times 3$ real orthogonal matrix $\exp(-i \va*{\theta} \vdot \va*{J})$.
 }
+
+Observe a few facts.
+First,
+\begin{eqnarray}
+    \label{eq:M-sq}
+    (-i \va{\theta} \vdot \va{J})^2 = 
+    \begin{pmatrix}
+        \theta_2^2 + \theta_3^2 & -\theta_1\theta_2 & -\theta_1\theta_3 \\
+        -\theta_1\theta_2 & \theta_1^2 + \theta_3^2 & -\theta_2\theta_3 \\
+        -\theta_1\theta_3 & -\theta_2\theta_3 & \theta_1^2 + \theta_2^2
+    \end{pmatrix}
+    = -[\theta^2\id - \va{\theta}\va{\theta}^{\rm T}]
+.\end{eqnarray}
+Next, by the Cayley-Hamilton theorem we have
+\begin{eqnarray}
+    \label{eq:M-characteristic-solve}
+    (-i \va*{\theta} \vdot \va*{J})^{3} = -(-i \va*{\theta} \vdot \va*{J})
+.\end{eqnarray}
+This can be extended by using the following argument.
+Suppose that this result holds for any arbitrary odd integer.
+That is, $(-i \va{\theta} \vdot \va{J})^{2n+1} = (-1)^{n}(-i \va{\theta} \vdot \va{J})$.
+Then it is clear that, this formula holds for the next odd number
+\begin{eqnarray}
+    \label{eq:general-odd}
+    (-i \va*{\theta} \vdot \va*{J})^{2(n+1)+1} = (-i \va*{\theta} \vdot \va*{J})^{2n+1}(-i \va*{\theta} \vdot \va*{J})^2 = (-1)^{n} (-i \va*{\theta} \vdot \va*{J})^{3} = (-1)^{n+1}(-i \va*{\theta} \vdot \va*{J})
+.\end{eqnarray}
+Additionally, this leads to a result for all the even integers as well:
+\begin{eqnarray}
+    \label{eq:general-even}
+    (-i \va*{\theta} \vdot \va*{J})^{2n} = (-1)^{n-1}(-i \va*{\theta} \vdot \va*{J})^2
+.\end{eqnarray}
+
+We may now tackle \eref{1-30_identities} using the Taylor expansion of the exponential function:
+\begin{align}
+    \label{eq:derive-identities}
+    e^{-i \va{\theta} \vdot \va{J}} &= \sum_{n=0}^{\infty} \frac{\theta^{n}}{n!}(-i \vu*{\theta} \vdot \va*{J})^{n} \notag \\
+    &= \sum_{n=0}^{\infty} \frac{\theta^{2n}}{(2n)!}(-i \vu*{\theta} \vdot \va*{J})^{2n} + \sum_{n=0}^{\infty} \frac{\theta^{2n+1}}{(2n+1)!} (-i\vu*{\theta} \vdot \va*{J})^{2n+1} \notag \\
+    &= \id -(-i \vu*{\theta} \vdot \va*{J})^2\sum_{n=1}^{\infty} \frac{1}{(2n)!} (-\theta)^{2n} + (-i \vu*{\theta} \vdot \va*{J}) \sum_{n=0} \frac{1}{(2n+1)!} (-\theta)^{2n+1} \notag \\
+    &= \id + (\id - \vu*{\theta}\vu*{\theta}^{\rm T})(\cos{\theta} - 1) - i \vu*{\theta} \vdot \va*{J} \sin{\theta} \notag \\
+    &= \eqbox{\cos{\theta}\id - i\vu*{\theta} \vdot \va*{J} \sin{\theta} + (1-\cos{\theta})\vu*{\theta}\vu*{\theta}^{\rm T}}
+.\end{align}
+
 
 
 \prob{1.32}{
