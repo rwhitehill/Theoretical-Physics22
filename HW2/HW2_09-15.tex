@@ -122,7 +122,7 @@ We may now tackle \eref{1-30_identities} using the Taylor expansion of the expon
     \label{eq:derive-identities}
     e^{-i \va{\theta} \vdot \va{J}} &= \sum_{n=0}^{\infty} \frac{\theta^{n}}{n!}(-i \vu*{\theta} \vdot \va*{J})^{n} \notag \\
     &= \sum_{n=0}^{\infty} \frac{\theta^{2n}}{(2n)!}(-i \vu*{\theta} \vdot \va*{J})^{2n} + \sum_{n=0}^{\infty} \frac{\theta^{2n+1}}{(2n+1)!} (-i\vu*{\theta} \vdot \va*{J})^{2n+1} \notag \\
-    &= \id -(-i \vu*{\theta} \vdot \va*{J})^2\sum_{n=1}^{\infty} \frac{1}{(2n)!} (-\theta)^{2n} + (-i \vu*{\theta} \vdot \va*{J}) \sum_{n=0} \frac{1}{(2n+1)!} (-\theta)^{2n+1} \notag \\
+    &= \id -(-i \vu*{\theta} \vdot \va*{J})^2\sum_{n=1}^{\infty} \frac{(-1)^{n}}{(2n)!} \theta^{2n} + (-i \vu*{\theta} \vdot \va*{J}) \sum_{n=0} \frac{(-1)^{n}}{(2n+1)!} \theta^{2n+1} \notag \\
     &= \id + (\id - \vu*{\theta}\vu*{\theta}^{\rm T})(\cos{\theta} - 1) - i \vu*{\theta} \vdot \va*{J} \sin{\theta} \notag \\
     &= \eqbox{\cos{\theta}\id - i\vu*{\theta} \vdot \va*{J} \sin{\theta} + (1-\cos{\theta})\vu*{\theta}\vu*{\theta}^{\rm T}}
 .\end{align}
@@ -146,7 +146,7 @@ Use Matlab or another program to find the singular values and the real orthogona
 Notice that 
 \begin{eqnarray}
     \label{eq:A-AT}
-    A^{\rm T} A = V \Sigma^{\rm T} \Sigma V^{\rm T}
+    A^{\rm T} A = V S^{\rm T} S V^{\rm T}
 .\end{eqnarray}
 so the eigenvalues of $A^{\rm T} A$ are the squares of the singular values, and the eigenvectors form the columns of $V$. 
 Computing the eigenvalues of $A^{\rm T} A$, we solve the characteristic equation for $A^{\rm T} A$:
@@ -244,13 +244,13 @@ Therefore, we have our SVD matrices as
     \begin{pmatrix}
         1 & 0 \\
         0 & 1
-    \end{pmatrix}
+    \end{pmatrix},
     \quad
     S =
     \begin{pmatrix}
         \sqrt{14} & 0 & 0 \\
         0 & \sqrt{10} & 0
-    \end{pmatrix}
+    \end{pmatrix},
     \quad
     V = 
     \begin{pmatrix}
@@ -267,13 +267,13 @@ Using Wolfram, the matrices for the SVD are given as
     \begin{pmatrix}
         1 & 0 \\
         0 & 1
-    \end{pmatrix}
+    \end{pmatrix},
     \quad
     S =
     \begin{pmatrix}
         \sqrt{14} & 0 & 0 \\
         0 & \sqrt{10} & 0
-    \end{pmatrix}
+    \end{pmatrix},
     \quad
     V = 
     \begin{pmatrix}
@@ -367,7 +367,7 @@ where
     =
     a \ket{0} + b\ket{1}
 .\end{eqnarray}
-The creation operator for the first state is just $a^{\dagger} \otimes \id \otimes \id$ such that 
+The creation operator for the first state is the tensor product $a_{1}^{\dagger} = a^{\dagger} \otimes \id \otimes \id$ such that 
 \begin{eqnarray}
     \label{eq:creation-1}
     \eqbox{
@@ -388,7 +388,7 @@ Similarly,
 \begin{eqnarray}
     \label{eq:creation-2}
     \eqbox{
-    a_{2}^{\dagger} = 
+    a_{2}^{\dagger} = \id \otimes a^{\dagger} \otimes  \id = 
     \begin{pmatrix}
         0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
         0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
@@ -405,12 +405,12 @@ and
 \begin{eqnarray}
     \label{eq:creation-3}
     \eqbox{
-    a_{3}^{\dagger} = 
+    a_{3}^{\dagger} = \id \otimes \id \otimes a^{\dagger} = 
     \begin{pmatrix}
         0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
         1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
-        0 & 1 & 0 & 0 & 0 & 0 & 0 & 0 \\
         0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+        0 & 0 & 1 & 0 & 0 & 0 & 0 & 0 \\
         0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
         0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 \\
         0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
