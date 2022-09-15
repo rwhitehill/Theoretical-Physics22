@@ -1,0 +1,52 @@
+\def\duedate{09/16/22}
+\def\HWnum{}
+%\chead{Mini-Assignment 1}
+\input{../preamble.tex}
+
+\begin{document}
+    
+\prob{1}{
+Prove that 
+\begin{eqnarray}
+    \label{eq:BAC-CAB}
+    \va*{A} \cross (\va*{B} \cross \va*{C}) = \va*{B}(\va*{A} \vdot \va*{C}) - \va*{C}(\va*{A} \vdot \va*{B})
+.\end{eqnarray}
+}
+
+In the following work, we will use Einstein's summation convention, where repeated indices are summed over implicitly unless otherwise stated (which for this problem will not happen).
+This will make the tedious accounting of sums and indices out front of the expressions happen automatically, making the work much cleaner and straightforward.
+Note that the indices here are roman letters, so the implicit sums will run over the set $\{ 1,2,3 \} $.
+
+Without further ado, we know that the $i^{\rm th}$ component of a cross product can be written as
+\begin{eqnarray}
+    \label{eq:cross-product}
+    (\va*{A} \cross \va*{B})_{i} = \epsilon_{ijk} A_{j}B_{k}
+,\end{eqnarray}
+and the dot product between two vectors is simply
+\begin{eqnarray}
+    \label{eq:dot-product}
+    \va*{A} \vdot \va*{B} = \delta_{ij}A_{i}B_{j} = A_{i}B_{i}
+.\end{eqnarray}
+Hence, we can write
+\begin{eqnarray}
+    \label{eq:A-x-BxC}
+    [\va*{A} \cross (\va*{B} \cross \va*{C})]_{i} = \epsilon_{ijk} A_{j}(\va*{B} \cross \va*{C})_{k} = \epsilon_{ijk} A_{j} \epsilon_{k \ell m} B_{\ell} C_{m} = \epsilon_{kij}\epsilon_{k \ell m} A_{j} B_{\ell} C_{m}
+,\end{eqnarray}
+noting that we can permute the indices of the Levi-Civita tensor without picking up any sign difference.
+We can then simplify \eref{A-x-BxC} by making use of the identity $\epsilon_{kij}\epsilon_{k \ell m} = \delta_{i \ell} \delta_{jm} - \delta_{im}\delta_{j\ell}$, which gives us that
+\begin{align}
+    \label{eq:simplified-cross}
+    [\va*{A} \cross (\va*{B} \cross \va*{C})]_{i} &= [\delta_{i\ell}\delta_{jm} - \delta_{im}\delta_{j\ell}]A_{j}B_{\ell}C_{m} \notag \\
+    &= B_{i}A_{j}C_{j} - C_{i}A_{j}B_{j} = B_{i}(\va*{A} \vdot \va*{C}) - C_{i}(\va*{A} \vdot \va*{B})
+.\end{align}
+Thus, we can write the whole vector equivalence as
+\begin{eqnarray}
+    \label{eq:result}
+    \eqbox{
+        \va*{A} \cross (\va*{B} \cross \va*{C}) = \va*{B}(\va*{A} \vdot \va*{C}) - \va*{C}(\va*{A} \vdot \va*{B})
+    }
+,\end{eqnarray}
+which is what we were after.
+
+
+\end{document}
