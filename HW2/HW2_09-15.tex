@@ -66,9 +66,9 @@ We can then define $\va*{\theta} = (\theta_1,\theta_2,\theta_3)$ and $\va*{J} = 
         \theta_3 & -\lambda & -\theta_1 \\
         -\theta_2 & \theta_1 & -\lambda
     \end{vmatrix}
-    \\
+    \notag \\
                                                            &=
-    -\lambda(\lambda^2 + \theta_1^2) + \theta_3(-\theta_3\lambda - \theta_1\theta_2) + \theta_2(\theta_3\theta_1 - \theta_2\lambda) \\
+    -\lambda(\lambda^2 + \theta_1^2) + \theta_3(-\theta_3\lambda - \theta_1\theta_2) + \theta_2(\theta_3\theta_1 - \theta_2\lambda) \notag \\
                                                            &= \eqbox{-\lambda(\lambda^2 + \theta^2)}
 .\end{align}
 
@@ -126,6 +126,14 @@ We may now tackle \eref{1-30_identities} using the Taylor expansion of the expon
     &= \id + (\id - \vu*{\theta}\vu*{\theta}^{\rm T})(\cos{\theta} - 1) - i \vu*{\theta} \vdot \va*{J} \sin{\theta} \notag \\
     &= \eqbox{\cos{\theta}\id - i\vu*{\theta} \vdot \va*{J} \sin{\theta} + (1-\cos{\theta})\vu*{\theta}\vu*{\theta}^{\rm T}}
 .\end{align}
+Finally, we can translate \eref{derive-identities} into an expression relating the elements of the matrices on the right and left side of the equation as follows:
+\begin{align}
+    \label{eq:derive-element-identity}
+    \left( e^{-i \va*{\theta} \vdot \va*{J}} \right)_{ij} &= \cos{\theta} \id_{ij} - i(\va*{\theta} \vdot \va*{J})_{ij}\sin{\theta} + (1-\cos{\theta})\left(\vu*{\theta} \vu*{\theta}^{\rm T}\right)_{ij} \notag \\
+                                                          &= \delta_{ij}\cos{\theta} - i\sin{\theta}\theta_{k}(J_{k})_{ij} + (1-\cos{\theta})\hat{\theta}_{i}\hat{\theta}_{j} \notag \\
+                                                          &= \eqbox{\delta_{ij}\cos{\theta} - \sin{\theta}\epsilon_{ijk}\theta_{k} + (1-\cos{\theta})\hat{\theta}_{i}\hat{\theta}_{j}}
+.\end{align}
+
 
 
 
@@ -164,7 +172,7 @@ Computing the eigenvalues of $A^{\rm T} A$, we solve the characteristic equation
 .\end{eqnarray}
 Hence, our singular values are $\sigma_1 = \sqrt{14}$ and $\sigma_2 = \sqrt{10}$.
 Solving for the column vectors of $V$, we solve $(A^{\rm T}A - \lambda_i \id) v_i$ for $i = 1,~2$ and normalize the eigenvectors.
-\begin{align*}
+\begin{align}
     \label{eq:v1-v2}
     \lambda_1 = 14:~
     \begin{pmatrix}
@@ -190,7 +198,7 @@ Solving for the column vectors of $V$, we solve $(A^{\rm T}A - \lambda_i \id) v_
     \begin{pmatrix}
     -3/\sqrt{10} \\ 0 \\ 1/\sqrt{10} 
     \end{pmatrix} 
-.\end{align*}
+.\end{align}
 Finally, we find $v_3$ by simply requiring that $\{ v_1,v_2,v_3 \} $ is an orthonormal set:
 \begin{eqnarray}
     \label{eq:v3}
@@ -334,7 +342,7 @@ giving
 %    \label{eq:entropy}
     S &= -k{\rm Tr}[\rho \ln{\rho}] \notag \\
       &= -\frac{2k}{\cosh(\hbar\omega/2kT)}\left[ e^{\hbar\omega/2kT}\ln\left[\frac{2e^{\hbar\omega/2kT}}{\cosh(\hbar\omega/2kT)}\right] + e^{-\hbar\omega/2kT}\ln\left[\frac{2e^{-\hbar\omega/2kT}}{\cosh(\hbar\omega/2kT)}\right] \right] \notag \\
-      &= \eqbox{ -2k \left[ \frac{\hbar\omega}{kT}\tanh{(\hbar\omega/2kT)} +  2\ln\left[ \frac{2}{\cosh(\hbar\omega/2kT)} \right] \right]
+      &= \eqbox{ -2k \left[ \frac{\hbar\omega}{2kT}\tanh{(\hbar\omega/2kT)} +  2\ln\left[ \frac{2}{\cosh(\hbar\omega/2kT)} \right] \right]
   }
 .\end{align}
 
