@@ -1,0 +1,51 @@
+\def\duedate{09/28/22}
+\def\HWnum{2}
+\input{../preamble_MA.tex}
+
+\begin{document}
+    
+\prob{1}{
+Provide proof that in cylindrical coordinates that the position vector can be written as $\va*{r} = \rho \vu*{\rho} + z\vu*{z}$
+}
+
+We would like to change from the coordinates $(x,y,z)$ to $(\rho,\phi,z)$ subject to the relations $x = \rho \cos{\phi}$, $y = \rho \sin{\phi}$, where the inverse relations are $\rho = \sqrt{x^2 + y^2}$, $\tan{\phi} = y/x$.
+Thus, to rewrite the position vector in cylindrical coordinates we need to rewrite the part dependent on $x,~y$ in terms of $\rho,~\phi$.
+
+Note that we can write an arbitrary unit vector $\vu*{u}$ in a curvilinear coordinate system as 
+\begin{eqnarray}
+    \label{eq:arbitrary-unit-vec}
+    \vu*{u} = \frac{1}{h_{u}}\dv{\va*{r}}{u} 
+,\end{eqnarray}
+where $\displaystyle h_{u} = \Big|\dv{\va*{r}}{u}\Big|$.
+Hence, 
+\begin{eqnarray}
+    \label{eq:rho-hat}
+    \dv{\va*{r}}{\rho} = \dv{x}{\rho} \vu*{x} + \dv{y}{\rho} \vu*{y} = \cos{\phi} \vu*{x} + \sin{\phi} \vu*{y}
+,\end{eqnarray}
+which is incidentally already a unit vector.
+Repeating the process for $\phi$ we find
+\begin{eqnarray}
+    \label{eq:phi-hat}
+    \dv{\va*{r}}{\phi} = -\rho \sin{\phi} \vu*{x} + \rho \cos{\phi} \vu*{y} \Rightarrow \vu*{\phi} = -\sin{\phi} \vu*{x} + \cos{\phi} \vu*{y}
+.\end{eqnarray}
+Now, we can take dot products to obtain $\vu*{x}$ and $\vu*{y}$ in terms of $\vu*{\rho}$ and $\vu*{\phi}$:
+\begin{align}
+    \label{eq:xy-in-rho_phi}
+    \vu*{x} &= \cos{\phi} \vu*{\rho} - \sin{\phi} \vu*{\phi} \\
+    \vu*{y} &= \sin{\phi} \vu*{\rho} + \cos{\phi} \vu*{\phi}
+.\end{align}
+Observe that the vectors $\vu*{\rho}$ and $\vu*{\phi}$ coincide with the new unit vectors in a system rotated by angle $\phi$ about the $z$-axis.
+
+Finally, we can rewrite the position vector:
+\begin{align}
+    \label{eq:rewrite-rvec}
+    \va*{r} &= \rho \cos{\phi} (\cos{\phi} \vu*{\rho} - \sin{\phi} \vu*{\phi}) + \rho \sin{\phi} (\sin{\phi} \vu*{\rho} + \cos{\phi} \vu*{\phi}) + z \vu*{z} \notag \\
+    &= \rho (\cos^2{\phi} + \sin^2{\phi}) \vu*{\rho} + \rho(-\cos{\phi}\sin{\phi} + \sin{\phi}\cos{\phi}) \vu*{\phi} + z \vu*{z} \notag \\
+    &= \eqbox{\rho \vu*{\rho} + z \vu*{z}}
+.\end{align}
+
+
+
+
+
+\end{document}
