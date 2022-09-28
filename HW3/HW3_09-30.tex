@@ -1,0 +1,242 @@
+\def\duedate{09/30/22}
+\def\HWnum{3}
+\input{../preamble_HW.tex}
+\usepackage{longtable}
+
+\begin{document}
+    
+\prob{2.1}{
+Derive the Levi-Civita identity
+\begin{eqnarray}
+    \label{eq:levi-civita-identity}
+    \sum_{i=1}^{3} \epsilon_{ijk}\epsilon_{imn} = \delta_{jm}\delta_{kn} - \delta_{jn}\delta_{km}
+.\end{eqnarray}
+}
+
+There may be a simpler and more elegant way to prove this, but the most straightforward, albeit brute force, method is just by plugging in the indices and showing that the two sides of \eref{levi-civita-identity} match for each tuple of indices $(j,k,m,n)$.
+This is done in $\tref{levi-civita-table-1}$.
+
+%\begin{table}[H]
+%\begin{center}
+\begin{longtable}{ccc}
+\hline
+$(j,k,m,n)$ & $\epsilon_{ijk}\epsilon_{imn}$ & $\delta_{jm}\delta_{kn} - \delta_{jn}\delta_{km}$ \\
+\hline
+(1,1,1,1) & 0  & 0 \\
+(1,1,1,2) & 0  & 0 \\
+(1,1,1,3) & 0  & 0 \\
+(1,1,2,1) & 0  & 0 \\
+(1,1,2,2) & 0  & 0 \\
+(1,1,2,3) & 0  & 0 \\
+(1,1,3,1) & 0  & 0 \\
+(1,1,3,2) & 0  & 0 \\
+(1,1,3,3) & 0  & 0 \\
+(1,2,1,1) & 0  & 0 \\
+(1,2,1,2) & 1  & 1 \\
+(1,2,1,3) & 0  & 0 \\
+(1,2,2,1) & -1  & -1 \\
+(1,2,2,2) & 0  & 0 \\
+(1,2,2,3) & 0  & 0 \\
+(1,2,3,1) & 0  & 0 \\
+(1,2,3,2) & 0  & 0 \\
+(1,2,3,3) & 0  & 0 \\
+(1,3,1,1) & 0  & 0 \\
+(1,3,1,2) & 0  & 0 \\
+(1,3,1,3) & 1  & 1 \\
+(1,3,2,1) & 0  & 0 \\
+(1,3,2,2) & 0  & 0 \\
+(1,3,2,3) & 0  & 0 \\
+(1,3,3,1) & -1  & -1 \\
+(1,3,3,2) & 0  & 0 \\
+(1,3,3,3) & 0  & 0 \\
+(2,1,1,1) & 0  & 0 \\
+(2,1,1,2) & -1  & -1 \\
+(2,1,1,3) & 0  & 0 \\
+(2,1,2,1) & 1  & 1 \\
+(2,1,2,2) & 0  & 0 \\
+(2,1,2,3) & 0  & 0 \\
+(2,1,3,1) & 0  & 0 \\
+(2,1,3,2) & 0  & 0 \\
+(2,1,3,3) & 0  & 0 \\
+(2,2,1,1) & 0  & 0 \\
+(2,2,1,2) & 0  & 0 \\
+(2,2,1,3) & 0  & 0 \\
+(2,2,2,1) & 0  & 0 \\
+(2,2,2,2) & 0  & 0 \\
+(2,2,2,3) & 0  & 0 \\
+(2,2,3,1) & 0  & 0 \\
+(2,2,3,2) & 0  & 0 \\
+(2,2,3,3) & 0  & 0 \\
+(2,3,1,1) & 0  & 0 \\
+(2,3,1,2) & 0  & 0 \\
+(2,3,1,3) & 0  & 0 \\
+(2,3,2,1) & 0  & 0 \\
+(2,3,2,2) & 0  & 0 \\
+(2,3,2,3) & 1  & 1 \\
+(2,3,3,1) & 0  & 0 \\
+(2,3,3,2) & -1  & -1 \\
+(2,3,3,3) & 0  & 0 \\
+(3,1,1,1) & 0  & 0 \\
+(3,1,1,2) & 0  & 0 \\
+(3,1,1,3) & -1  & -1 \\
+(3,1,2,1) & 0  & 0 \\
+(3,1,2,2) & 0  & 0 \\
+(3,1,2,3) & 0  & 0 \\
+(3,1,3,1) & 1  & 1 \\
+(3,1,3,2) & 0  & 0 \\
+(3,1,3,3) & 0  & 0 \\
+(3,2,1,1) & 0  & 0 \\
+(3,2,1,2) & 0  & 0 \\
+(3,2,1,3) & 0  & 0 \\
+(3,2,2,1) & 0  & 0 \\
+(3,2,2,2) & 0  & 0 \\
+(3,2,2,3) & -1  & -1 \\
+(3,2,3,1) & 0  & 0 \\
+(3,2,3,2) & 1  & 1 \\
+(3,2,3,3) & 0  & 0 \\
+(3,3,1,1) & 0  & 0 \\
+(3,3,1,2) & 0  & 0 \\
+(3,3,1,3) & 0  & 0 \\
+(3,3,2,1) & 0  & 0 \\
+(3,3,2,2) & 0  & 0 \\
+(3,3,2,3) & 0  & 0 \\
+(3,3,3,1) & 0  & 0 \\
+(3,3,3,2) & 0  & 0 \\
+(3,3,3,3) & 0  & 0 \\
+\hline
+\caption{Table of values for the Levi-Civita identity in \eref{levi-civita-identity}.}
+\label{tab:levi-civita-table-1}
+\end{longtable} 
+%\end{center}
+%\end{table}
+
+\prob{2.2}{
+Derive the Levi-Civita identity
+\begin{eqnarray}
+    \label{eq:levi-civita-identity-2}
+    \sum_{i,j=1}^{3} \epsilon_{ijk}\epsilon_{ijn} = 2\delta_{kn}
+.\end{eqnarray}
+}
+
+Using the first Levi-Civita identity above, we can sum over the index $j$.
+\begin{eqnarray}
+    \label{eq:sum-j}
+    \sum_{j=1}^{3}\sum_{i=1}^{3} \epsilon_{ijk}\epsilon_{ijn} = \sum_{j=1}^{3} [\delta_{jj}\delta_{kn} - \delta_{jn}\delta_{kj}]
+.\end{eqnarray}
+Again, we can write out the results for each tuple of indices $(k,n)$, which is recorded in \tref{levi-civita-table-2}.
+\begin{table}[H]
+\begin{center}
+    \begin{tabular}{ccc}
+     \hline
+    $(k,n)$ & $\epsilon_{ijk}\epsilon_{ijn}$ & $2\delta_{kn}$ \\
+     \hline
+     (1,1) & 2  & 2 \\
+     (1,2) & 0  & 0 \\
+     (1,3) & 0  & 0 \\
+     (2,1) & 0  & 0 \\
+     (2,2) & 2  & 2 \\
+     (2,3) & 0  & 0 \\
+     (3,1) & 0  & 0 \\
+     (3,2) & 0  & 0 \\
+     (3,3) & 2  & 2 \\
+     \hline
+   \end{tabular} 
+\end{center} 
+\caption{Table of values for the Levi-Civita identity in \eref{levi-civita-identity-2}}
+\label{tab:levi-civita-table-2}
+\end{table}
+
+\prob{2.3}{
+Show that
+\begin{eqnarray}
+    \label{eq:2-3_identity}
+    \curl{(\va*{a} \cross \va*{b})} = \va*{a} \div{\va*{b}} - \va*{b} \div{\va*{a}} + (\va*{b} \vdot \grad)\va*{a} - (\va*{a} \vdot \grad)\va*{b}
+.\end{eqnarray}
+}
+
+For this proof, we will utilize the Einstein summation convention and denote $\displaystyle \pdv{x_{i}} = \nabla_{i}$.
+The $i^{\rm th}$ component of $\curl{(\va*{a} \cross \va*{b})}$ is 
+\begin{align}
+    \label{eq:start-proof_2-3}
+    [\curl{(\va*{a} \cross \va*{b})}]_{i} &= \epsilon_{ijk} \nabla_{j} (\va*{a} \cross \va*{b})_{k} = \epsilon_{ijk}\epsilon_{klm} \nabla_{j} a_{l} b_{m} \notag \\
+                                          &= [\delta_{il}\delta_{jm} - \delta_{im}\delta_{jl}] \nabla_{j}a_{l}b_{m} \notag \\
+                                          &= \nabla_{j} a_{i} b_{j} - \nabla_{j} a_{j} b_{i} \notag \\
+                                          &= a_{i} \nabla_{j} b_{j} + b_{j} \nabla_{j} a_{i} - a_{j} \nabla_{j} b_{i} - b_{i} \nabla_{j} a_{j} \notag \\
+                                          &= a_{i} \div{\va*{b}} - b_{i} \div{\va*{a}} + (\va*{b} \vdot \grad) a_{i} - (\va*{a} \vdot \grad) b_{i}
+.\end{align}
+Hence, we have the identity as follows:
+\begin{eqnarray}
+    \label{eq:identity-present}
+    \eqbox{
+    \curl{(\va*{a} \cross \va*{b})} = \va*{a} \div{\va*{b}} - \va*{b} \div{\va*{a}} + (\va*{b} \vdot \grad) \va*{a} - (\va*{a} \vdot \grad) \va*{b}
+}
+.\end{eqnarray}
+
+
+
+\prob{2.4}{
+Simplify $\curl{\grad\phi}$ and $\div{(\curl{\va*{a}})}$ in which $\phi$ is a scalar field and $\va*{a}$ is a vector field.
+}
+
+For the first quantity we write
+\begin{align}
+    \label{eq:curl-gradient} 
+    \eqbox{
+    [\curl{\grad\phi}]_{i} = \epsilon_{ijk} \nabla_{j} \nabla_{k} \phi = -\epsilon_{ikj} \nabla_{k} \nabla_{j} \phi = 0 \Rightarrow \curl{\grad\phi} = 0
+}
+\end{align}
+since interchanging indices and differential changes nothing about the sum.
+
+Next, for the second quantity we write
+\begin{align}
+    \label{eq:div-curl}
+    \div{(\curl{\va*{a}})} = \nabla_{i} (\curl{\va*{a}})_{i} = \epsilon_{ijk} \nabla_{i} \nabla_{j} a_{k} = 0 \Rightarrow \div{(\curl{\va*{a}})} = 0
+\end{align}
+for the same reason as in the case of the curl of a gradient.
+
+\prob{2.5}{
+Simplify $\div{(\grad\phi \cross \grad\psi)}$ in which $\phi$ and $\psi$ are scalar fields.
+}
+
+We can simplify the expression as follows
+\begin{eqnarray}
+    \label{eq:div-cross-grads}
+    \grad \vdot (\grad\phi \cross \grad\psi) = \epsilon_{ijk} \nabla_{i} \nabla_{j} \phi \nabla_{k}\psi = 0
+\end{eqnarray}
+since we can interchange $i \leftrightarrow j$ and pick up a minus sign without changing the sum.
+
+\prob{2.6}{
+Let $\va*{B} = \curl{\va*{A}}$ and $\va*{E} = -\grad\phi - \dot{\va*{A}}$ and show that Maxwell's equations in vacuum and the Lorentz gauge condition
+\begin{eqnarray}
+    \label{eq:lorentz-gauge-cond}
+    \div{\va*{A}} + \dot{\phi}/c^2 = 0
+\end{eqnarray}
+imply that $\va*{A}$ and $\phi$ obey the wave equations
+\begin{eqnarray}
+    \label{eq:label}
+    \laplacian\phi - \ddot{\phi}/c^2 = 0 \quad \mbox{and} \quad \laplacian \va*{A} - \ddot{\va*{A}}/c^2 = 0
+.\end{eqnarray}
+}
+
+We can take the divergence of the expression for $\va*{E}$, which gives (in the Lorentz gauge in vacuum)
+\begin{eqnarray}
+    \label{eq:div-E}
+    \eqbox{
+    \grad \vdot \va*{E} = -\laplacian\phi - \grad \vdot \dot{\va*{A}} = -\laplacian\phi + \ddot{\phi}/c^2 = 0
+}
+.\end{eqnarray}
+
+For the expression for $\va*{B}$, we take the cross product (since we already used the fact that $\grad \vdot \va*{B} = 0$ to write $\va*{B} = \grad \cross \va*{A}$):
+\begin{align}
+    \label{eq:curl-B}
+    \grad \cross \va*{B} = \grad \cross (\grad \cross \va*{A}) &= \grad(\grad \vdot \va*{A}) - \grad^2\va*{A} = \frac{1}{c^2}\dot{\va*{E}} \notag \\
+    \grad(\grad \vdot \va*{A}) - \grad^2 \va*{A} &= \frac{1}{c^2} (-\grad\dot{\phi} - \ddot{\va*{A}}) \notag \\
+    \grad(\grad \vdot \va*{A}) - \grad^2 \va*{A} &= \frac{1}{c^2} (-c^2\grad(\grad \vdot \va*{A}) - \ddot{\va*{A}}) \notag \\
+    \eqbox{\grad^2 \va*{A} = \frac{1}{c^2}\ddot{\va*{A}}}
+.\end{align}
+ 
+
+
+
+
+\end{document}
