@@ -205,6 +205,13 @@ We can simplify the expression as follows
 \end{eqnarray}
 since we can interchange $i \leftrightarrow j$ and pick up a minus sign without changing the sum.
 
+Alternatively, we have the following identity:
+\begin{eqnarray}
+    \label{eq:alternative-method}
+    \grad \vdot (\va*{A} \cross \va*{B}) = (\grad \cross \va*{A}) \vdot \va*{B} - (\grad \cross \va*{B}) \vdot \va*{A}
+,\end{eqnarray}
+from this it is clear that $\grad \vdot (\grad\phi \cross \grad\psi) = 0$ since $\grad \cross \grad\phi = 0$ for any scalar funcction $\phi$.
+
 \prob{2.6}{
 Let $\va*{B} = \curl{\va*{A}}$ and $\va*{E} = -\grad\phi - \dot{\va*{A}}$ and show that Maxwell's equations in vacuum and the Lorentz gauge condition
 \begin{eqnarray}
