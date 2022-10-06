@@ -1,0 +1,231 @@
+\def\duedate{10/14/22}
+\def\HWnum{4}
+\input{../preamble_HW.tex}
+
+\begin{document}
+    
+\prob{3.2}{
+Show that the Fourier series 
+\begin{eqnarray}
+    \label{eq:3.17} 
+    f(\rho,\theta) = \sum_{n=-\infty}^{\infty} \Big( \frac{\rho}{a} \Big)^{|n|} \Bigg[ \int_{0}^{2\pi} h(\theta') \frac{e^{-in\theta'}}{\sqrt{2\pi}} \dd{\theta'} \Bigg] \frac{e^{in\theta}}{\sqrt{2\pi}}
+\end{eqnarray}
+obeys Laplace's equation 
+\begin{eqnarray}
+    \label{eq:3.18} 
+    \frac{1}{\rho} \pdv{\rho} \Big( \rho \pdv{f}{\rho} \Big) + \frac{1}{\rho^2} \pdv[2]{f}{\theta} = 0
+\end{eqnarray}
+and respects the boundary condition $f(a,\theta) = h(\theta)$.
+}
+
+$\rightarrow$ Note that Laplace's equation can be rewritten to read
+\begin{eqnarray}
+    \label{eq:rewrite-Laplace}
+    \rho\pdv{\rho} \Big( \rho \pdv{f}{\rho} \Big) + \pdv[2]{f}{\theta} = 0
+.\end{eqnarray}
+
+
+For part differentiating with respect to $\theta$ we can write simply:
+\begin{eqnarray}
+    \label{eq:2-pdv-theta}
+    \pdv[2]{f}{\theta} = -n^2f(\rho,\theta)
+.\end{eqnarray}
+Next, for the part with respect to $\rho$ we have
+\begin{align}
+    \label{eq:pdv-rho}
+    \rho\pdv{f}{\rho} &= |n|f(\rho,\theta) \\
+    \rho\pdv{\rho} \Big( \rho\pdv{f}{\rho} \Big) &= |n|^2 f(\rho,\theta) = n^2 f(\rho,\theta)
+.\end{align}
+Thus, we come to the conclusion that
+\begin{eqnarray}
+    \label{eq:Laplace-solution}
+    \rho \pdv{\rho} \Big( \rho\pdv{f}{\rho} \Big) + \pdv[2]{f}{\theta} = n^2f(\rho,\theta) - n^2f(\rho,\theta) = 0
+.\end{eqnarray}
+
+Finally, we check the boundary condition as follows:
+\begin{eqnarray}
+    \label{eq:f-at-a}
+    f(a,\theta) = \sum_{n=-\infty}^{\infty} \frac{e^{in\theta}}{\sqrt{2\pi}}\int_{0}^{2\pi} h(\theta') \frac{e^{-in\theta'}}{\sqrt{2\pi}} \dd{\theta'} = h(\theta)
+,\end{eqnarray} 
+noting that the integral is just the coefficient $h_{n}$ in the Fourier series of $h(\theta)$.
+
+
+\prob{3.3}{
+Find the forms that 
+\begin{eqnarray}
+    \label{eq:3.10}
+    \begin{aligned}
+        \bra{g}\ket{f} &= \sum_{n=-\infty}^{\infty} \bra{g}\ket{n}\bra{n}\ket{f} = \sum_{n=-\infty}^{\infty} g_{n}^{*}f_{n} \\
+                       &= \int_{0}^{2\pi} \bra{g}\ket{x}\bra{x}\ket{f} \dd{x} = \int_{0}^{2\pi} g^{*}(x)f(x) \dd{x}
+    \end{aligned} 
+\end{eqnarray}
+and
+\begin{eqnarray}
+    \label{eq:3.11}
+    \begin{aligned}
+        \bra{f}\ket{f} = \sum_{n=-\infty}^{\infty} |\bra{n}\ket{f}|^2 = \sum_{n=-\infty}^{\infty} |f_{n}|^2 = \int_{0}^{2\pi} |\bra{x}\ket{f}|^2 \dd{x} = \int_{0}^{2\pi} |f(x)|^2 \dd{x}
+    \end{aligned} 
+\end{eqnarray}
+for the inner products $\bra{g}\ket{f}$ and $\bra{f}\ket{f}$ take when one uses the asymmetrical notations 
+\begin{eqnarray}
+    \label{eq:3.21}
+    f(x) = \sum_{n=-\infty}^{\infty} d_{n} e^{inx} \quad \mbox{and} \quad d_{n} = \frac{1}{2\pi}\int_{0}^{2\pi} \dd{x} e^{-inx}f(x)
+\end{eqnarray}
+and
+\begin{eqnarray}
+    \label{eq:3.22}
+    f(x) = \frac{1}{2\pi}\sum_{n=-\infty}^{\infty} c_{n}e^{inx} \quad \mbox{and} \quad c_{n} = \int_{-\pi}^{\pi} f(x) e^{-inx} \dd{x}
+.\end{eqnarray}
+}
+
+
+
+\prob{3.8}{}
+
+a) Show that the Fourier series for the function $|x|$ on the interval $[-\pi,\pi]$ is 
+\begin{eqnarray}
+    \label{eq:|x|-fourier}
+    |x| = \frac{\pi}{2} - \frac{4}{\pi}\sum_{n=0}^{\infty} \frac{\cos{(2n+1)x}}{(2n+1)^2}
+.\end{eqnarray}
+
+Since $|x|$ is a odd real-valued function we can write 
+\begin{eqnarray}
+    \label{eq:|x|-fourier-1}
+    |x| = \frac{a_0}{2} + \sum_{n=1}^{\infty} a_{n}\cos{nx} 
+,\end{eqnarray}
+where
+\begin{eqnarray}
+    \label{eq:a0}
+    a_0 = \frac{2}{\pi}\int_{0}^{\pi} x \dd{x} = \pi
+\end{eqnarray}
+and
+\begin{eqnarray}
+    \label{eq:an-bn}
+    a_{n} = \frac{2}{\pi} \int_{0}^{\pi} x\cos{nx} \dd{x} = \frac{2}{\pi}\frac{\cos{(\pi n)} - 1}{n^2} = 
+    \begin{cases}
+        0 & n \equiv 0 ~ ({\rm mod} 2) \\
+        -\frac{4}{\pi}\frac{1}{n^2} & n \equiv 1 ~ ({\rm mod} 2)
+    \end{cases}
+\end{eqnarray}
+for $n > 1$.
+Hence, 
+\begin{eqnarray}
+    \label{eq:|x|-fourier-2}
+    \eqbox{
+    |x| = \frac{\pi}{2} - \frac{4}{\pi} \sum_{n=1}^{\infty} \frac{ \cos{(2n+1)x} }{(2n+1)^2}
+}
+.\end{eqnarray}
+
+
+b) Use this result to find a neat formula for $\pi^2/8$.
+
+If we plug in $x = 0$, we find
+\begin{eqnarray}
+    \label{eq:pisq-8}
+    \eqbox{
+    0 = \frac{\pi}{2} - \frac{4}{\pi}\sum_{n=1}^{\infty} \frac{1}{(2n+1)^2} \Rightarrow \frac{\pi^2}{8} = \sum_{n=1}^{\infty} \frac{1}{(2n+1)^2}
+}
+.\end{eqnarray}
+
+
+
+\prob{3.16}{
+Suppose we wish to approximate the real square-integrable function $f(x)$ by the Fourier series with $N$ terms
+\begin{eqnarray}
+    \label{eq:3.171}
+    f_{N}(x) = \frac{a_0}{2} + \sum_{n=1}^{N} (a_{n}\cos{nx} + b_{n}\sin{nx})
+.\end{eqnarray}
+Then the error
+\begin{eqnarray}
+    \label{eq:3.172}
+    E_{N} = \int_{0}^{2\pi} \big[ f(x) - f_{N}(x) \big]^2 \dd{x}
+.\end{eqnarray}
+will depend upon the $2N+1$ coefficients $a_{n}$ and $b_{n}$.
+The best coefficients minimize this error and satisfy the conditions
+\begin{eqnarray}
+    \label{eq:3.173}
+    \pdv{E_{N}}{a_{n}} = \pdv{E_{N}}{b_{n}} = 0
+.\end{eqnarray}
+By using these conditions, find the best coefficients.
+}
+
+For the derivative of $E_{N}$ with respect to any parameter, say $\eta$, 
+\begin{eqnarray}
+    \label{eq:deriv-EN-param}
+    \pdv{E_{N}}{\eta} = -2\int_{0}^{2\pi} \big[ f(x) - f_{N}(x) \big] \pdv{f_{N}}{\eta} \dd{x} = 0
+.\end{eqnarray}
+Hence,
+\begin{eqnarray}
+    \label{eq:deriv-a0}
+    \begin{aligned}
+        \pdv{E_{N}}{a_0} &= -2\int_{0}^{2\pi} \frac{1}{2}\big[f(x) - f_{N}(x) \big] \dd{x} = 0 \\
+        \pdv{E_{N}}{a_n} &= -2\int_{0}^{2\pi} \cos{nx}\big[f(x) - f_{N}(x) \big] \dd{x} = 0 \\
+        \pdv{E_{N}}{b_n} &= -2\int_{0}^{2\pi} \sin{nx}\big[f(x) - f_{N}(x) \big] \dd{x} = 0 \\
+    \end{aligned}
+.\end{eqnarray}
+
+
+
+\prob{3.19}{
+    Use the commutation relation $[p,q] = i\hbar$ to show that the annihilation and creation operators satisfy the commutation relation $[a,a^{\dagger}] = 1$.
+}
+
+The creation and annihilation operators are defined as follows:
+\begin{align}
+    \label{eq:creation-annihilation-def}
+    a &= \sqrt{\frac{m\omega}{2\hbar}}\Big( q + i \frac{p}{m\omega} \Big) \\
+    a^{\dagger} &= \sqrt{\frac{m\omega}{2\hbar}}\Big( q - i \frac{p}{m\omega} \Big) \\
+.\end{align}
+Thus, the commutator
+\begin{align}
+    \label{eq:commutator}
+    [a,a^{\dagger}] &= a a^{\dagger} - a^{\dagger} a = \frac{m\omega}{2\hbar} \Bigg[ \Big( q + i \frac{p}{m\omega} \Big) \Big( q - i \frac{p}{m\omega} \Big)  - \Big( q - i \frac{p}{m \omega} \Big) \Big( q + i \frac{p}{m \omega} \Big) \Bigg] \notag \\
+                    &= \frac{m\omega}{2\hbar} \Bigg[ q^2 - \frac{i}{m \omega} qp + \frac{i}{m \omega} pq + \frac{p^2}{m^2 \omega^2} - q^2 - \frac{i}{m \omega} qp + \frac{i}{m \omega} pq - \frac{p^2}{m^2 \omega^2} \Bigg] \notag \\
+                    &= \frac{1}{i \hbar} [q,p] = \eqbox{1}
+.\end{align}
+
+
+\prob{3.25}{}
+
+a) Find the Fourier series for the function $f(x) = x^2$ on the interval $[-\pi,\pi]$.
+
+Note that $x^2$ is an odd real-valued function so we can write
+\begin{eqnarray}
+    \label{eq:x2-fourier}
+    x^2 = \frac{a_0}{2} + \sum_{n=1}^{\infty} a_{n}\cos{nx}
+,\end{eqnarray}
+where
+\begin{eqnarray}
+    \label{eq:a0_x2}
+    a_0 = \frac{2}{\pi} \int_{0}^{\pi} x^2 \dd{x} = \frac{2\pi^3}{3}
+\end{eqnarray}
+and
+\begin{eqnarray}
+    \label{eq:an_x2}
+    a_{n} = \frac{2}{\pi} \int_{0}^{\pi} x^2\cos{nx} \dd{x} = \frac{4 \cos{(\pi n)}}{n^2} = \frac{4}{n^2}(-1)^{n}
+.\end{eqnarray}
+Thus,
+\begin{eqnarray}
+    \label{eq:x2-fourier-1}
+    x^2 = \frac{\pi^3}{3} + 4 \sum_{n=1}^{\infty} (-1)^{n}\frac{\cos{nx}}{n^2}
+.\end{eqnarray}
+
+
+b) Use your result at $x = \pi$ to show that 
+\begin{eqnarray}
+    \label{eq:3.175}
+    \sum_{n=1}^{\infty} \frac{1}{n^2} = \frac{\pi^2}{6}
+,\end{eqnarray}
+which is the value of Riemann's zeta function $\zeta(x)$ at $x = 2$
+
+If we plug in $x = \pi$ to our Fourier expansion above, we find
+\begin{gather}
+    \label{eq:x-pi-sum}
+    \pi^2 = \frac{\pi^3}{3} + 4 \sum_{n=1}^{\infty} (-1)^{n} \frac{\cos{(n\pi)}}{n^2} = \frac{\pi^3}{3} + 4 \sum_{n=1}^{\infty} \frac{1}{n^2} \notag \\
+    \eqbox{
+    \frac{\pi^2}{6} = \sum_{n=1}^{\infty} \frac{1}{n^2}
+}
+.\end{gather}
+
+
+\end{document}
