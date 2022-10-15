@@ -78,6 +78,34 @@ and
 .\end{eqnarray}
 }
 
+For the first asymmetric convention $\displaystyle \id = \frac{1}{2\pi}\int_{0}^{2\pi} \dd{x} \ket{x}\bra{x}$ and $\displaystyle \id = \sum_{n} \ket{n}\bra{n}$, where $\bra{x}\ket{n} = e^{inx}$, so
+\begin{align}
+    \label{eq:first-convention}
+    \bra{g}\ket{f} &= \sum_{n=-\infty}^{\infty} \bra{g}\ket{n}\bra{n}\ket{f} = \sum_{n=-\infty}^{\infty} g_{n}^{*} f_{n} \\
+                   &= \frac{1}{2\pi} \int_{0}^{2\pi} \bra{g}\ket{x} \bra{x}\ket{f} \dd{x} = \frac{1}{2\pi} \int_{0}^{2\pi} g^{*}(x)f(x) \dd{x}
+,\end{align}
+where $f_{n}$ and $g_{n}$ are the coefficients as defined in \eref{3.21}.
+Hence
+\begin{align}
+    \label{eq:f-f-1} 
+    \bra{f}\ket{f} = \sum_{n=-\infty}^{\infty} |f_{n}|^2 = \frac{1}{2\pi} \int_{0}^{2\pi} |f(x)|^2 \dd{x}
+.\end{align}
+
+For the second asymmetric convention $\displaystyle \id = 2\pi \int_{0}^{2\pi} \dd{x} \ket{x}\bra{x}$ and $\displaystyle \id = \sum_{n} \ket{n}\bra{n}$, where $\bra{x}\ket{n} = e^{inx}/2\pi$, so
+\begin{align}
+    \label{eq:second-convention}
+    \bra{g}\ket{f} &= \sum_{n=-\infty}^{\infty} \bra{g}\ket{n}\bra{n}\ket{f} = \sum_{n=-\infty}^{\infty} g_{n}^{*} f_{n} \\
+                   &= 2\pi \int_{0}^{2\pi} \bra{g}\ket{x} \bra{x}\ket{f} \dd{x} = 2\pi \int_{0}^{2\pi} g^{*}(x)f(x) \dd{x}
+,\end{align}
+where $f_{n}$ and $g_{n}$ are the coefficients as defined in \eref{3.22}.
+Hence
+\begin{align}
+    \label{eq:f-f-2} 
+    \bra{f}\ket{f} = \sum_{n=-\infty}^{\infty} |f_{n}|^2 = 2\pi \int_{0}^{2\pi} |f(x)|^2 \dd{x}
+.\end{align}
+
+
+
 
 
 \prob{3.8}{}
@@ -156,25 +184,55 @@ For the derivative of $E_{N}$ with respect to any parameter, say $\eta$,
 .\end{eqnarray}
 Hence,
 \begin{eqnarray}
-    \label{eq:deriv-a0}
+    \label{eq:deriv-params}
     \begin{aligned}
         \pdv{E_{N}}{a_0} &= -2\int_{0}^{2\pi} \frac{1}{2}\big[f(x) - f_{N}(x) \big] \dd{x} = 0 \\
         \pdv{E_{N}}{a_n} &= -2\int_{0}^{2\pi} \cos{nx}\big[f(x) - f_{N}(x) \big] \dd{x} = 0 \\
         \pdv{E_{N}}{b_n} &= -2\int_{0}^{2\pi} \sin{nx}\big[f(x) - f_{N}(x) \big] \dd{x} = 0 \\
     \end{aligned}
 .\end{eqnarray}
+For the following, it will be useful to recall the following properties:
+\begin{align}
+    \label{eq:properties}
+    \int_{0}^{2\pi} \sin{(n x)} \cos{(m x)} \dd{x} &= 0 \\
+    \int_{0}^{2\pi} \sin{(n x)} \sin{(m x)} \dd{x} &= \pi\delta_{nm} \\
+    \int_{0}^{2\pi} \cos{(n x)} \cos{(m x)} \dd{x} &= \pi\delta_{nm}
+,\end{align}
+where $n,m \geq 1$.
+Plugging in the definition of $f_{N}(x)$ for the first equation, we have
+\begin{align}
+    \label{eq:deriv-params-1}
+    \int_{0}^{2\pi} f(x) \dd{x} &= \int_{0}^{2\pi} \Big( \frac{a_0}{2} + \sum_{j=1}^{N} \big[ a_{j}\cos{jx} + b_{j} \sin{jx} \big] \Big) = \pi a_0 \\
+                                &\Rightarrow \eqbox{a_0 = \frac{1}{\pi} \int_{0}^{2\pi} f(x) \dd{x}}
+.\end{align}
+For the $a_{n}$ ($n > 1$) equations we have
+\begin{align}
+    \label{eq:deriv-params-2}
+    \int_{0}^{2\pi} \cos{nx}f(x) \dd{x} &= \int_{0}^{2\pi} \cos{nx}\Big( \frac{a_0}{2} + \sum_{j=1}^{N} \big[ a_{j}\cos{jx} + b_{j} \sin{jx} \big] \Big) \\
+                                        &= \sum_{j=1}^{N} \Bigg[ a_{j} \int_{0}^{2\pi} \cos{nx}\sin{jx} \dd{x} + b_{j} \int_{0}^{2\pi} \cos{nx}\sin{jx} \dd{x} \Bigg] \\
+                                        &= \sum_{j=1}^{N} \pi a_{j} \delta_{nj} = \pi a_{n} \\
+                                        &\Rightarrow \eqbox{a_{n} = \int_{0}^{2\pi} \cos{nx} f(x) \dd{x}}
+.\end{align}
+By a similar line of reasoning we have
+\begin{eqnarray}
+    \label{eq:deriv-params-3}
+    \eqbox{
+        b_{n} = \frac{1}{\pi} \int_{0}^{2\pi} \sin{nx} f(x) \dd{x}
+} 
+.\end{eqnarray}
+
 
 
 
 \prob{3.19}{
-    Use the commutation relation $[p,q] = i\hbar$ to show that the annihilation and creation operators satisfy the commutation relation $[a,a^{\dagger}] = 1$.
+    Use the commutation relation $[q,p] = i\hbar$ to show that the annihilation and creation operators satisfy the commutation relation $[a,a^{\dagger}] = 1$.
 }
 
 The creation and annihilation operators are defined as follows:
 \begin{align}
     \label{eq:creation-annihilation-def}
     a &= \sqrt{\frac{m\omega}{2\hbar}}\Big( q + i \frac{p}{m\omega} \Big) \\
-    a^{\dagger} &= \sqrt{\frac{m\omega}{2\hbar}}\Big( q - i \frac{p}{m\omega} \Big) \\
+    a^{\dagger} &= \sqrt{\frac{m\omega}{2\hbar}}\Big( q - i \frac{p}{m\omega} \Big)
 .\end{align}
 Thus, the commutator
 \begin{align}
