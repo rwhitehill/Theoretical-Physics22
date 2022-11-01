@@ -84,6 +84,47 @@ Similarly, we notice that $x\exp(-\beta|x|)/|x|$ is an odd real-valued function,
 }
 .\end{eqnarray}
 
+\prob{4.5}{
+For the state $\ket{\psi,t}$ given by 
+\begin{subequations}
+\begin{eqnarray}
+    \label{eq:4-83}
+    \varphi(p) = \sqrt{\frac{a}{2\hbar}} \Big( \frac{2}{\pi} \Big)^{1/4} e^{-(ap)^2/(2\hbar)^2}
+\end{eqnarray}
+and
+\begin{eqnarray}
+    \label{eq:4-88}
+    e^{-iHt}\ket{\psi,0} = \int_{-\infty}^{\infty} e^{-ip^2t/2\hbar m} \ket{p}\varphi(p)\dd{p}
+,\end{eqnarray}
+\end{subequations}
+find the wave function $\psi(x,t) = \bra{x}\ket{\psi,t}$ at time $t$.
+Then find the variance of the position operator at that time.
+Does it grow as time goes by?
+How?
+}
+
+The wave function in the position basis is computed as follows:
+\begin{align}
+    \label{eq:compute-psi-x}
+    \psi(x,t) &= \int_{-\infty}^{\infty} e^{-ip^2t/2\hbar m} \frac{e^{ipx}}{\sqrt{2\pi\hbar}} \sqrt{\frac{a}{2\hbar}}\Bigg( \frac{2}{\pi} \Bigg)^{1/4} e^{-(ap)^2/(2\hbar)^2} \dd{p} \\
+              &= \Bigg( \frac{2}{\pi} \Bigg)^{1/4} \sqrt{\frac{a}{2\hbar}} \sqrt{\frac{4\pi\hbar^2m}{ma^2 + 2i\hbar t}} e^{-m\hbar^2 x^2/(ma^2 + 2i\hbar t)} \\
+              &= \eqbox{ \Bigg( \frac{2}{\pi} \Bigg)^{1/4} \sqrt{\frac{2\pi\hbar ma}{ma^2 + 2i\hbar t}} e^{-m\hbar^2x^2/(ma^2 + 2i\hbar t)} }
+.\end{align}
+The variance of any wavefunction in space is given as $\sigma = \expval{x^2} - \expval{x}^2$, so we could find it this way, but the form of a normalized gaussian looks as $\exp(-(x-\expval{x})^2/2\sigma^2)/\sigma\sqrt{2\pi}$, where $\sigma$ is the variance of the distribution.
+Actually the variance of the distribution is the same as the variance of the probability density given by the wavefunction, so we can find the variance as follows:
+\begin{eqnarray}
+    \label{eq:distribution}
+    |\psi(x,t)|^2 = \sqrt{\frac{2}{\pi}} \frac{2\pi\hbar ma}{m^2a^{4} + 4\hbar^2t^2} e^{-2m^2a^2\hbar^2x^2/(m^2a^4+4\hbar^2t^2)}
+.\end{eqnarray}
+Thus, the variance is just
+\begin{eqnarray}
+    \label{eq:variance}
+    \eqbox{
+    \sigma^2 = \frac{m^2a^4 + 4\hbar^2t^2}{4m^2a^2\hbar^2} 
+}
+.\end{eqnarray}
+Clearly, we can see that the variance of the wavefunction grows, meaning that the position becomes less localized in space.
+Specifically, the variance grows quadratically in $t$.
 
 
 
