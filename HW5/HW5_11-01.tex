@@ -1,0 +1,315 @@
+\def\duedate{11/01/22}
+\def\HWnum{5}
+\input{../preamble_HW.tex}
+
+\begin{document}
+    
+\prob{4.1}{
+Show that the Fourier integral formula 
+\begin{eqnarray}
+    \label{eq:fourier-int-formula}
+    f(x) = \frac{1}{\pi} \int_{0}^{\infty} \int_{-\infty}^{\infty} f(y) \cos{k(y-x)} \dd{k}\dd{y}
+,\end{eqnarray}
+where $f$ is a real function, follows from 
+\begin{eqnarray}
+    \label{eq:4-9}
+    f(x) = \int_{-\infty}^{\infty} \tilde{f}(k) e^{ikx} \frac{\dd{k}}{\sqrt{2\pi}} \quad \mbox{and} \quad \tilde{f}(k) = \int_{-\infty}^{\infty} f(x) e^{-ikx} \frac{\dd{x}}{\sqrt{2\pi}}
+\end{eqnarray}
+and
+\begin{eqnarray}
+    \label{eq:4-25}
+    \tilde{f}^{*}(k) = \int_{-\infty}^{\infty} \frac{\dd{x}}{\sqrt{2\pi}} f(x) e^{ikx} = \tilde{f}(-k)
+.\end{eqnarray}
+}
+
+We know that $f^{*}(x) = f(x)$ since $f$ is a real-valued function.
+Equivalently, $\Im f(x) = 0$.
+We can write 
+\begin{eqnarray}
+    \label{eq:f-equiv}
+    f(x) = \frac{f(x) + f^{*}(x)}{2} 
+.\end{eqnarray}
+Thus,
+\begin{align}
+    \label{eq:f-equiv-fourier}
+    f(x) &= \frac{1}{2} \Bigg( \int_{-\infty}^{\infty} \tilde{f}(k) e^{ikx} \frac{\dd{k}}{\sqrt{2\pi}} + \int_{-\infty}^{\infty} \tilde{f}^{*}(k) e^{-ikx} \frac{\dd{k}}{\sqrt{2\pi}} \Bigg) \\
+         &= \frac{1}{2} \Bigg( \int_{-\infty}^{\infty} \tilde{f}(k) e^{ikx} \frac{\dd{k}}{\sqrt{2\pi}} + \int_{-\infty}^{\infty} \tilde{f}(-k) e^{-ikx} \frac{\dd{k}}{\sqrt{2\pi}} \Bigg) \\
+         &= \frac{1}{2} \int_{-\infty}^{\infty} \Bigg(\Bigg[ \int_{-\infty}^{\infty} f(y) e^{-iky} \frac{\dd{y}}{\sqrt{2\pi}} \Bigg] e^{ikx} + \Bigg[ \int_{-\infty}^{\infty} f(y) e^{iky} \frac{\dd{y}}{\sqrt{2\pi}} \Bigg] e^{-ikx} \Bigg) \frac{\dd{k}}{\sqrt{2\pi}} \\ 
+         &= \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} f(y) \Big[ \frac{1}{2}\Big( e^{ik(x-y)} + e^{-ik(x-y)} \Big) \Big] \frac{\dd{k}\dd{y}}{2\pi} \\
+         &= \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} f(y) \cos{k(x-y)} \dd{k}\dd{y} \\
+         &= \eqbox{\frac{1}{\pi} \int_{0}^{\infty} \int_{-\infty}^{\infty} f(y) \cos{k(x-y)} \dd{k}\dd{y}}
+,\end{align}
+which is the of the same form as \eref{fourier-int-formula} noting that cosine is odd in its argument.
+
+\prob{4.4}{
+By using the Fourier-transform formulas
+\begin{subequations}
+\begin{eqnarray}
+    \label{eq:4-27}
+    f(x) = \frac{2}{\pi}  \int_{0}^{\infty} \cos{kx} \dd{k} \int_{0}^{\infty} f(y) \cos{ky} \dd{y}
+,\end{eqnarray}
+if $f$ is both real and even, and
+\begin{eqnarray}
+    \label{eq:4-28}
+    f(x) = \frac{2}{\pi}  \int_{0}^{\infty} \sin{kx} \dd{k} \int_{0}^{\infty} f(y) \sin{ky} \dd{y}
+.\end{eqnarray}
+\end{subequations}
+if $f$ is both real and odd, derive the formulas 
+\begin{subequations}
+\begin{eqnarray}
+    \label{eq:4-31}
+    e^{-\beta |x|} = \frac{2}{\pi} \int_{0}^{\infty} \frac{\beta \cos{kx}}{\beta^2 + k^2} \dd{k}
+\end{eqnarray}
+and
+\begin{eqnarray}
+    \label{eq:4-32}
+    \frac{x}{|x|}e^{-\beta |x|} = \frac{2}{\pi} \int_{0}^{\infty} \frac{k \sin{kx}}{\beta^2 + k^2} \dd{k}
+\end{eqnarray}
+\end{subequations}
+for the even and odd extensions of the exponential $\exp(-\beta |x|)$.
+}
+
+Let us derive the expression for $\exp(-\beta |x|)$, which is clearly a real-valued function and even, so we use \eref{4-27}:
+\begin{eqnarray}
+    \label{eq:derive-4-31}
+    \eqbox{
+    e^{-\beta |x|} = \frac{2}{\pi} \int_{0}^{\infty} \int_{0}^{\infty} \cos{kx}\,e^{-\beta y} \cos{ky} \dd{y}\dd{k} = \int_{0}^{\infty} \frac{\beta}{\beta^2 + k^2} \cos{kx} \dd{k}
+}
+.\end{eqnarray}
+Similarly, we notice that $x\exp(-\beta|x|)/|x|$ is an odd real-valued function, so
+\begin{eqnarray}
+    \label{eq:derive-4-32}
+    \eqbox{
+    \frac{x}{|x|} = \frac{2}{\pi}\int_{0}^{\infty} \int_{0}^{\infty} \sin{kx}\,e^{-\beta y} \sin{k y} \dd{y}\dd{k} = \frac{2}{\pi} \int_{0}^{\infty} \frac{k}{\beta^2 + k^2} \sin{kx} \dd{k}
+}
+.\end{eqnarray}
+
+
+
+
+\prob{4.6}{
+At time $t = 0$, a particle of mass $m$ is in a gaussian superposition of momentum eigenstates centered at $p = \hbar K$
+\begin{eqnarray}
+    \label{eq:wave-packet-gauss}
+    \psi(x,0) = \mathcal{N} \int_{-\infty}^{\infty} e^{ikx} e^{-L^2(k - K)^2} \dd{k}
+.\end{eqnarray}
+} 
+
+a) Shift $k$ by $K$ and do the integral.
+Whare is the particle most likely to be found?
+
+Let $\ell = k - K$ such that 
+\begin{align}
+    \label{eq:wave-packet-shift}
+    \psi(x,0) &= \mathcal{N} \int_{-\infty}^{\infty} e^{i(\ell + K)x} e^{-L^2\ell^2} \dd{\ell} = e^{iKx} \mathcal{N} \int_{-\infty}^{\infty} e^{i \ell x} e^{-L^2 \ell^2} \dd{\ell} \\
+              &= \mathcal{N} e^{iKx} \int_{-\infty}^{\infty} e^{-x^2/4L^2} e^{-L^2(\ell - ix/2L^2)^2} \dd{\ell} \\
+              &= \mathcal{N} e^{iKx} e^{-x^2/4L^2} \Big( \frac{\sqrt{\pi}}{L} \Big)
+.\end{align}
+We can normalize this state as follows:
+\begin{eqnarray}
+    \label{eq:normalize-state}
+    \int_{-\infty}^{\infty} |\psi|^2 \dd{x} = \mathcal{N}^2 \Big( \frac{\pi}{L^2} \Big) \int_{-\infty}^{\infty} e^{-x^2/2L^2} \dd{x} = \mathcal{N}^2 \Big( \frac{\pi}{L^2} \Big) \Big( L\sqrt{2\pi} \Big) = \frac{\sqrt{2 \pi^3}}{L} \mathcal{N}^2
+.\end{eqnarray}
+Thus, we require
+\begin{eqnarray}
+    \label{eq:normalization-const}
+    \mathcal{N} = \Big( \frac{L^2}{2\pi^3} \Big)^{1/4} \Rightarrow \psi(x,0) = \frac{1}{(2\pi L^2)^{1/4}} e^{iKx} e^{-x^2/4L^2}
+.\end{eqnarray}
+Thus, the expected value of $x$ at $t = 0$ is
+\begin{eqnarray}
+    \label{eq:expval-x-t0}
+    \eqbox{
+    \expval{x} = \int_{-\infty}^{\infty} \psi^{*}(x,0) x \psi(x,0) \dd{x} = \frac{1}{\sqrt{2\pi}L} \int_{-\infty}^{\infty} x e^{-x^2/2L^2} \dd{x} = 0
+}
+\end{eqnarray}
+since this is an odd function integrated over an even range.
+
+
+b) At time $t$, the wave function $\psi(x,t)$ is $\psi(x,0)$ but with $ikx$ replaced with $ikx - i\hbar k^2t/2m$.
+Shift $k$ by $K$ and do the integral.
+Where is the particle most likely to be found?
+
+The wavefunction at an arbitrary time $t > 0$ is given by
+\begin{eqnarray}
+    \label{eq:psi-t}
+    \psi(x,t) = \mathcal{N} \int_{-\infty}^{\infty} e^{ikx - i\hbar k^2t/2m} e^{-L^2(k-K)^2} \dd{k}
+.\end{eqnarray}
+Again, we let $\ell = k - K$ such that
+\begin{align}
+    \label{eq:shift-wavefunc-t}
+    \psi(x,t) &= \mathcal{N} \int_{-\infty}^{\infty} e^{i(\ell + K)x - i \hbar (\ell + K)^2t/2m} e^{-L^2\ell^2} \dd{k} \\
+              &= \mathcal{N} e^{iKx}e^{-i\hbar K^2 t/2m} \int_{-\infty}^{\infty} e^{i \ell x}e^{-i\hbar \ell^2 t/2m} e^{-i\hbar \ell K t/m} e^{-L^2\ell^2} \dd{\ell} \\
+              &= \mathcal{N} e^{iKx - i\hbar K^2 t/2m} \int_{-\infty}^{\infty} e^{i(x-\hbar K t/m)\ell} e^{-(L^2 + i\hbar t/2m)\ell^2} \dd{\ell} \\
+              &= \mathcal{N} e^{iKx - i\hbar K^2 t/m} \sqrt{\frac{\pi}{L^2 + i\hbar t/2m}} e^{-(x-\hbar K t/2m)^2/4(L^2 + i\hbar t/2m)}
+.\end{align}
+Thus, we can normalize the wavefunction as follows:
+\begin{gather}
+    \label{eq:normalize-t}
+    \mathcal{N}^2 \frac{\pi}{\sqrt{L^4 + \hbar^2 t^2/4m^2}} \int_{-\infty}^{\infty} e^{-L^2(x-\hbar K t/m)^2/2(L^4 + \hbar^2 t^2/4m^2)} \dd{x} = 1 \\
+    \mathcal{N}^2 \frac{\pi}{\sqrt{L^{4} + \hbar^2t^2/4m^2}} \sqrt{\frac{2\pi\Big( L^{4} + \hbar^2 t^2/4m^2 \Big)}{L^2}} = \mathcal{N}^2 \Big[ \frac{2 \pi^3}{L^2} \Big]^{1/2} = 1 \\
+    \mathcal{N} = \Big( \frac{L^2}{2\pi^3} \Big)^{1/4}
+,\end{gather}
+which is the same normalization as for $\psi(x,0)$ (this is expected -- actually it is required for conservation of probability).
+The wavefunction for all times is then given by
+\begin{eqnarray}
+    \label{eq:wavefunc-t}
+    \psi(x,t) = \Big( \frac{L^2}{2\pi^3} \Big)^{1/4} \sqrt{\frac{\pi}{L^2 + i\hbar t/2m}} e^{iKx - i\hbar K^2 t/2m} e^{-(x - \hbar Kt/m)^2/4(L^2 + i\hbar t/2m)}
+.\end{eqnarray}
+Hence, the expected position is 
+\begin{align}
+    \label{eq:expval-x-t}
+    \expval{x} &= \frac{L}{\pi\sqrt{2\pi}} \frac{\pi}{\sqrt{L^{4} + \hbar^2 t^2/4m^2}} \int_{-\infty}^{\infty} x e^{-L^2(x-\hbar K t/m)^2/2(L^4 + \hbar^2 t^2/4m^2)} \dd{x} \\
+               &= \frac{L}{\sqrt{2\pi(L^{4} + \hbar^2 t^2/4m^2)}} \frac{\hbar K t}{m} \sqrt{\frac{2\pi(L^{4} + \hbar^2t^2/4m^2)}{L^2}} \\
+               &= \eqbox{ \frac{\hbar K}{m} t }
+.\end{align}
+This is a very nice result, appearing as the classical relation between a particle's position and momentum ($p = \hbar K$).
+
+c) Does the wave packet spread out like $t$ or like $\sqrt{t}$ as in classical diffusion?
+
+The spread of the gaussian wave packet is given by its standard deviation, where the time-dependent behavior goes like $t$ for large time scales.
+
+\prob{4.11}{
+Derive 
+\begin{eqnarray}
+    \label{eq:4-115}
+    \grad \cross \va*{B} = \grad \cross (\grad \cross \va*{A}) = \grad(\grad \vdot \va*{A}) - \grad^2 \va*{A} = - \grad^2 \va*{A} = \mu_0 \va*{J}
+\end{eqnarray}
+from $\va*{B} = \grad \cross \va*{A}$ and Amp\`{e}re's Law $\grad \cross \va*{B} = \mu_0 \va*{J}$.
+}
+
+Observe that
+\begin{eqnarray}
+    \label{eq:Lap-for-A}
+    \grad \cross \va*{B} = \grad \cross (\grad \cross \va*{A}) = \grad(\grad \vdot \va*{A}) - \grad^2\va*{A} = \mu_0 \va*{J}
+.\end{eqnarray}
+Note that we can make $\grad \vdot \va*{A} = 0$ by a suitable gauge transformation.
+Thus, in the appropriate gauge,
+\begin{eqnarray}
+    \label{eq:Lap-for-A-1}
+    \eqbox{
+    -\grad^2 \va*{A} = \mu_0 \va*{J}
+    } 
+.\end{eqnarray}
+
+
+\prob{4.14}{
+Use the Green's function relations
+\begin{subequations}
+\begin{eqnarray}
+    \label{eq:4-110}
+    -\grad^2G(\va*{x} - \va*{x}') = \int \frac{\dd[3]{\va*{k}}}{(2\pi)^{3}} e^{i \va*{k} \vdot (\va*{x} - \va*{x}')} = \delta^{(3)}(\va*{x} - \va*{x}')
+\end{eqnarray}
+and
+\begin{eqnarray}
+    \label{eq:4-111}
+    G(\va*{x} - \va*{x}') = \frac{1}{2\pi^2|\va*{x} - \va*{x}'|}\int_{0}^{\infty} \frac{\sin{k} \dd{k}}{k}
+\end{eqnarray}
+\end{subequations}
+to show that
+\begin{eqnarray}
+    \label{eq:4-117}
+    \va*{A}(\va*{x}) = \frac{\mu_0}{4\pi} \int \dd[3]\va*{x}' \frac{\va*{J}(\va*{x}')}{|\va*{x} - \va*{x}'|} 
+\end{eqnarray}
+satisfies \eref{4-115}.
+}
+
+Notice that the Green's function is 
+\begin{eqnarray}
+    \label{eq:greens-simplified}
+    G(\va*{x} - \va*{x}') = \frac{1}{4\pi |\va*{x} - \va*{x}'|} 
+.\end{eqnarray}
+Thus,
+\begin{eqnarray}
+    \label{eq:Avec-int}
+    \va*{A}(\va*{x}) = \mu_0 \int \dd[3]{\va*{x}'} G(\va*{x} - \va*{x}')\va*{J}(\va*{x}')
+.\end{eqnarray}
+Hence,
+\begin{gather}
+    \label{eq:lap-Avec}
+    \grad^2 \va*{A}(\va*{x}) = \mu_0 \int \dd[3]{\va*{x}'} \big[ \grad^2 G(\va*{x}-\va*{x}') \big] J(\va*{x}') = \mu_0 \int \dd[3]{\va*{x}'} \delta^{(3)}(\va*{x} - \va*{x}') J(\va*{x}') \\
+    \Rightarrow \eqbox{\grad^2 \va*{A}(\va*{x}) = \mu_0 \va*{J}(\va*{x})}
+.\end{gather}
+
+
+\prob{4.16}{
+Compute the Laplace transform of $1/\sqrt{t}$ (Hint: let $t = u^2$).
+}
+
+The Laplace transform of $1/\sqrt{t}$ is computed as follows
+\begin{eqnarray}
+    \label{eq:lap-trans}
+    \mathcal{L}\Big\{ \frac{1}{\sqrt{t}} \Big\} = \int_{0}^{\infty} \frac{1}{\sqrt{t}}e^{-st} \dd{t}
+.\end{eqnarray}
+If we let $t = u^2$, then $\dd{t} = 2 u \dd{u}$ and
+\begin{eqnarray}
+    \label{eq:lap-trans-subs}
+    \eqbox{
+        \mathcal{L}\Big\{ \frac{1}{\sqrt{t}} \Big\} = \int_{0}^{\infty} \frac{1}{u}e^{-su^2} 2u\dd{u} = 2 \int_{0}^{\infty} e^{-s u^2} \dd{u} = \sqrt{\frac{\pi}{s}}
+}
+,\end{eqnarray}
+where we have assumed that $|s| > 0$ such that the integral converges.
+
+\prob{4.17}{
+Show that the commutation relations 
+\begin{eqnarray}
+    \label{eq:4-185}
+    [a(\va*{k}),a^{\dagger}(\va*{k}')] = \delta(\va*{k} - \va*{k}') \quad \mbox{and} \quad [a(\va*{k}),a(\va*{k}')] = [a^{\dagger}(\va*{k}),a^{\dagger}(\va*{k}')] = 0
+\end{eqnarray}
+of the annihilation and creation operators imply the equal-time commutation relations
+\begin{eqnarray}
+    \label{eq:4-186}
+    [\phi(\va*{x},t),\pi(\va*{y},t)]  = i\delta(\va*{x}-\va*{y}) \quad \mbox{and} \quad [\phi(\va*{x},t),\phi(\va*{y},t)] = [\pi(\va*{x},t),\pi(\va*{y},t)] = 0
+\end{eqnarray}
+for the field $\phi$ and its conjugate momentum $\pi$.
+}
+
+The fields
+\begin{subequations}
+\begin{eqnarray}
+    \label{eq:phi}
+    \phi(x) = \int \Big[ e^{i(\va*{k} \vdot \va*{x} - \omega_{k} t)}a(\va*{k}) + e^{-i(\va*{k} \vdot \va*{x} - \omega_{k}t)}a^{\dagger}(\va*{k}) \Big] \frac{\dd[3]{k}}{\sqrt{(2\pi)^{3}2\omega_{k}}}  
+\end{eqnarray}
+and
+\begin{eqnarray}
+    \label{eq:pi}
+    \pi(x) = -i \int \Big[ e^{i(\va*{k} \vdot \va*{x} - \omega_{k} t)}a(\va*{k}) - e^{-i(\va*{k} \vdot \va*{x} - \omega_{k}t)}a^{\dagger}(\va*{k}) \Big] \sqrt{\frac{\omega_{k}}{2(2\pi^3)}}\dd[3]{k} 
+.\end{eqnarray}
+\end{subequations}
+
+Hence,
+\begin{align}
+    \label{eq:comm-phi-pi}
+    &[\phi(\va*{x},t),\pi(\va*{y},t)] = \phi(\va*{x},t)\pi(\va*{y},t) - \pi(\va*{y},t)\phi(\va*{x},t) \\
+                                     &= -i \iint \Bigg[ \Big[ e^{i(\va*{k}\vdot\va*{x} - \omega_{k}t)}a(\va*{k}) + e^{-i(\va*{k}\vdot \va*{x} - \omega_{k}t)}a^{\dagger}(\va*{k}) \Big] \Big[ e^{i(\va*{k}'\vdot\va*{y} - \omega_{k'}t)}a(\va*{k}') - e^{-i(\va*{k}'\vdot \va*{y} - \omega_{k'}t)}a^{\dagger}(\va*{k}') \Big] \notag \\
+                                     &-  \Big[ e^{i(\va*{k}'\vdot\va*{y} - \omega_{k'}t)}a(\va*{k}') - e^{-i(\va*{k}'\vdot \va*{y} - \omega_{k'}t)}a^{\dagger}(\va*{k}') \Big] \Big[ e^{i(\va*{k}\vdot\va*{x} - \omega_{k}t)}a(\va*{k}) + e^{-i(\va*{k}\vdot \va*{x} - \omega_{k}t)}a^{\dagger}(\va*{k}) \Big] \Bigg] \times \notag \\
+                                     &\frac{1}{\sqrt{(2\pi)^3 2\omega_{k}}} \sqrt{\frac{\omega_{k'}}{2(2\pi)^3}} \dd[3]{k} \dd[3]{k'} \\
+                                     &= i \iint \Bigg[ e^{i(\va*{k} \vdot \va*{x} - \omega_{k}t)}e^{-i(\va*{k}' \vdot \va*{y} - \omega_{k'}t)}\Big[a(\va*{k}),a^{\dagger}(\va*{k}')\Big] + e^{-i(\va*{k} \vdot \va*{x} - \omega_{k}t)}e^{i(\va*{k}' \vdot \va*{y} - \omega_{k'}t)} \Big[a(\va*{k}'),a^{\dagger}(\va*{k}) \Big] \Bigg] \times \notag \\
+                                     &\frac{1}{2(2\pi)^3}\sqrt{\frac{\omega_{k'}}{\omega_{k}}} \dd[3]{k}\dd[3]{k'} \\
+                                     &= i \int \Big[ e^{i\va*{k}(\va*{x} - \va*{y})} + e^{-i \va*{k}(\va*{x} - \va*{y})} \Big] \frac{\dd[3]{k}}{(2\pi)^3} = \frac{i}{2(2\pi)^3} 2(2\pi)^3 \delta(\va*{x} - \va*{y}) = \eqbox{ i \delta(\va*{x} - \va*{y}) }
+.\end{align}
+
+Similarly,
+\begin{align}
+    \label{eq:comm-phi-phi}
+    &[\phi(\va*{x},t),\phi(\va*{y},t)] = \phi(\va*{x},t)\phi(\va*{y},t) - \phi(\va*{y},t)\phi(\va*{x},t) \\
+                                     &= \iint \Bigg[ \Big[ e^{i(\va*{k}\vdot\va*{x} - \omega_{k}t)}a(\va*{k}) + e^{-i(\va*{k}\vdot \va*{x} - \omega_{k}t)}a^{\dagger}(\va*{k}) \Big] \Big[ e^{i(\va*{k}'\vdot\va*{y} - \omega_{k'}t)}a(\va*{k}') + e^{-i(\va*{k}'\vdot \va*{y} - \omega_{k'}t)}a^{\dagger}(\va*{k}') \Big] \notag \\
+                                     &-  \Big[ e^{i(\va*{k}'\vdot\va*{y} - \omega_{k'}t)}a(\va*{k}') + e^{-i(\va*{k}'\vdot \va*{y} - \omega_{k'}t)}a^{\dagger}(\va*{k}') \Big] \Big[ e^{i(\va*{k}\vdot\va*{x} - \omega_{k}t)}a(\va*{k}) + e^{-i(\va*{k}\vdot \va*{x} - \omega_{k}t)}a^{\dagger}(\va*{k}) \Big] \Bigg] \times \notag \\
+                                     &\frac{1}{\sqrt{(2\pi)^3 2\omega_{k}}} \frac{1}{\sqrt{(2\pi)^3 2\omega_{k'}}} \dd[3]{k} \dd[3]{k'} \\
+                                     &= \iint \Bigg[ e^{i(\va*{k} \vdot \va*{x} - \omega_{k}t)}e^{-i(\va*{k}' \vdot \va*{y} - \omega_{k'}t)}\Big[a(\va*{k}),a^{\dagger}(\va*{k}')\Big] - e^{-i(\va*{k} \vdot \va*{x} - \omega_{k}t)}e^{i(\va*{k}' \vdot \va*{y} - \omega_{k'}t)} \Big[a(\va*{k}'),a^{\dagger}(\va*{k}) \Big] \Bigg] \times \notag \\
+                                     &\frac{1}{2(2\pi)^3\sqrt{\omega_{k}\omega_{k'}}} \dd[3]{k}\dd[3]{k'} \\
+                                     &= \int \Big[ e^{i \va*{k} \vdot (\va*{x} - \va*{y})} - e^{-i \va*{k} \vdot (\va*{x} - \va*{y})} \Big] \frac{\dd[3]{k}}{(2\pi)^3 \omega_{k}} = \eqbox{0}
+,\end{align}
+and
+\begin{align}
+    \label{eq:comm-pi-pi}
+    &[\pi(\va*{x},t),\pi(\va*{y},t)] = \pi(\va*{x},t)\pi(\va*{y},t) - \pi(\va*{y},t)\pi(\va*{x},t) \\
+                                     &= - \iint \Bigg[ \Big[ e^{i(\va*{k}\vdot\va*{x} - \omega_{k}t)}a(\va*{k}) - e^{-i(\va*{k}\vdot \va*{x} - \omega_{k}t)}a^{\dagger}(\va*{k}) \Big] \Big[ e^{i(\va*{k}'\vdot\va*{y} - \omega_{k'}t)}a(\va*{k}') - e^{-i(\va*{k}'\vdot \va*{y} - \omega_{k'}t)}a^{\dagger}(\va*{k}') \Big] \notag \\
+                                     &-  \Big[ e^{i(\va*{k}'\vdot\va*{y} - \omega_{k'}t)}a(\va*{k}') - e^{-i(\va*{k}'\vdot \va*{y} - \omega_{k'}t)}a^{\dagger}(\va*{k}') \Big] \Big[ e^{i(\va*{k}\vdot\va*{x} - \omega_{k}t)}a(\va*{k}) - e^{-i(\va*{k}\vdot \va*{x} - \omega_{k}t)}a^{\dagger}(\va*{k}) \Big] \Bigg] \times \notag \\
+                                     &\sqrt{\frac{\omega_{k}}{2(2\pi)^3}}\sqrt{\frac{\omega_{k'}}{2(2\pi)^3}} \dd[3]{k} \dd[3]{k'} \\
+                                     &= \iint \Bigg[ e^{i(\va*{k} \vdot \va*{x} - \omega_{k}t)}e^{-i(\va*{k}' \vdot \va*{y} - \omega_{k'}t)}\Big[a(\va*{k}),a^{\dagger}(\va*{k}')\Big] - e^{-i(\va*{k} \vdot \va*{x} - \omega_{k}t)}e^{i(\va*{k}' \vdot \va*{y} - \omega_{k'}t)} \Big[a(\va*{k}'),a^{\dagger}(\va*{k}) \Big] \Bigg] \times \notag \\
+                                     &\frac{\sqrt{\omega_{k}\omega_{k'}}}{2(2\pi)^3} \dd[3]{k}\dd[3]{k'} \\
+                                     &= \int \Big[ e^{i \va*{k} \vdot (\va*{x} - \va*{y})} - e^{-i \va*{k} \vdot (\va*{x} - \va*{y})} \Big] \frac{\omega_{k} \dd[3]{k}}{(2\pi)^3} = \eqbox{0}
+.\end{align}
+
+
+\end{document}
