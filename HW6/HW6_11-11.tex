@@ -13,6 +13,15 @@ Do the integral
 in which the contour $C$ is counterclockwise about the circle $|z| = 2$
 }
 
+We can write 
+\begin{eqnarray}
+    \label{eq:int-6.5-rewrite}
+    \eqbox{
+    \oint_{C} \frac{\dd{z}}{(z-1)(z+1)} = 2 \pi i \Big( \frac{1}{z + 1}\Big|_{z = 1} + \frac{1}{z - 1}\Big|_{z = -1} \Big) = 0
+}
+.\end{eqnarray}
+
+
 \prob{6.9}{
 Use Cauchy's integral formula
 \begin{eqnarray}
@@ -31,6 +40,25 @@ for Legendre's polynomial $P_{n}(x)$ to derive Schlaefli's formula
 .\end{eqnarray}
 }
 
+We can denote
+\begin{eqnarray}
+    \label{eq:fn-Legendre}
+    f(x) = (x^2 - 1)^{n} 
+.\end{eqnarray}
+Then,
+\begin{eqnarray}
+    \label{eq:Schlaefli-formula}
+    f^{(n)(z)} = \frac{n!}{2 \pi i} \oint \dd{z'} \frac{(z'^2 - 1)^{n}}{(z'-z)^{n+1}} = 2^{n} n! P_{n}(z)
+.\end{eqnarray}
+Hence,
+\begin{eqnarray}
+    \label{eq:6.46-result}
+    \eqbox{
+    P_{n}(z) = \frac{1}{2^{n} 2 \pi i} \oint \frac{(z'^2 - 1)^{n}}{(z' - z)^{n+1}} \dd{z'}
+}
+.\end{eqnarray}
+
+
 \prob{6.20}{
 Use a contour integral to evaluate the integral
 \begin{eqnarray}
@@ -39,13 +67,59 @@ Use a contour integral to evaluate the integral
 .\end{eqnarray}
 }
 
+Recall that we can write $\cos{\theta} = (e^{i\theta} + e^{-i\theta})/2$.
+Also note that the function $(a + \cos{\theta})^{-1}$ is even with respect to $\theta$, so we can extend the integration range to be symmetric if we divide the result by $1/2$.
+Hence,
+\begin{eqnarray}
+    \label{eq:rewrite-int-6.20}
+    I_{a} = \int_{-\pi}^{\pi} \frac{\dd{\theta}}{2a + e^{i\theta} + e^{-i\theta}} 
+.\end{eqnarray}
+Let us define $z = e^{i\theta}$, then $e^{-i\theta} = z^{-1}$ and $\dd{\theta} = \dd{z}/iz$.
+Furthermore, the contour of integration is the circle $|z|=1$.
+Thus,
+\begin{eqnarray}
+    \label{eq:subs-int-6.20}
+    I_{a} = \int_{C} \frac{1}{2a + z + z^{-1}} \frac{\dd{z}}{iz} = -i \int_{C} \frac{\dd{z}}{z^2 + 2az + 1}
+.\end{eqnarray}
+The function $f(z) = (z^2 + 2az + 1)^{-1}$ has poles at $z_{\pm} = -a \pm \sqrt{a^2 - 1}$.
+Observe that $|z_{-}| < -1 < |z_{+}|$, implying that the only pole enclosed is $z_{+}$.
+This means that 
+\begin{align}
+    \label{eq:label}
+    I_{a} &= -i \int_{C} \frac{\dd{z}}{(z - z_{+})(z - z_{-})} = -i (2 \pi i)\Big( \frac{1}{z - z_{-}} \Big)\Big|_{z = z_{+}} \\
+    &= 2 \pi \frac{1}{(-a + \sqrt{a^2 - 1}) - (-a - \sqrt{a^2 - 1})} \\
+    &= \eqbox{ \frac{\pi}{\sqrt{a^2 - 1}} }
+.\end{align}
+
+
 \prob{6.26}{
 Show that
 \begin{eqnarray}
     \label{eq:6.26-int}
-    \int_{0}^{\infty} \cos{ax} e^{-x^2} \dd{x} = \frac{1}{2}\sqrt{\pi}e^{-a^2/4}
+    \int_{0}^{\infty} \cos{ax} \, e^{-x^2} \dd{x} = \frac{1}{2}\sqrt{\pi}e^{-a^2/4}
 .\end{eqnarray}
 }
+
+In this problem we again use the same reasoning as in the previous problem to write
+\begin{align}
+    \label{eq:rewrite-6.26-int}
+    I &= \frac{1}{4} \int_{-\infty}^{\infty} (e^{iax}e^{-x^2} + e^{-iax}e^{-x^2}) \dd{x} \notag \\
+    &= \frac{1}{4} \int_{-\infty}^{\infty} (e^{-(x^2 - iax)} + e^{-(x^2 + iax)}) \dd{x} \notag \\
+    &= \frac{1}{4} \int_{-\infty}^{\infty} \big[ e^{(-ia/2)^2}e^{-(x^2 - ix + (-ia/2)^2)} + e^{(ia/2)^2}e^{-(x^2 + iax + (ia/2)^2)} \big] \dd{x} \notag \\
+    &= \frac{1}{4} e^{-a^2/4} \int_{-\infty}^{\infty} \big[ e^{-(x - ia/2)^2} + e^{-(x + ia/2)^2} \big] \dd{x}
+.\end{align}
+In example 6.23 it is proven that
+\begin{eqnarray}
+    \label{eq:integral-gauss}
+    \int_{-\infty}^{\infty} e^{-m^2x^2} \dd{x} = \int_{-\infty}^{\infty} e^{-m^2(x + ic)^2} \dd{x}
+,\end{eqnarray}
+so using this result here, we find
+\begin{eqnarray}
+    \label{eq:result-6.26}
+    I = \frac{\sqrt{\pi}}{2} e^{-a^2/4} 
+,\end{eqnarray}
+where the extra factor of $2$ came from having two gaussian integrals in \eref{rewrite-6.26-int}.
+
 
 \prob{6.33}{
 The Bessel function $J_{n}$ is given by the integral
