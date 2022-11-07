@@ -1,0 +1,78 @@
+\def\duedate{11/11/22}
+\def\HWnum{6}
+\input{../preamble_HW.tex}
+
+\begin{document}
+    
+\prob{6.5}{
+Do the integral 
+\begin{eqnarray}
+    \label{eq:6.5-int}
+    \oint_{C} \frac{\dd{z}}{z^2-1}
+\end{eqnarray}
+in which the contour $C$ is counterclockwise about the circle $|z| = 2$
+}
+
+\prob{6.9}{
+Use Cauchy's integral formula
+\begin{eqnarray}
+    \label{eq:Cauchy-int-formula}
+    f^{(n)}(z) = \frac{n!}{2 \pi i} \oint \dd{z'} \frac{f(z')}{(z' - z)^{n+1}}
+\end{eqnarray}
+and Rodrigues's expression 
+\begin{eqnarray}
+    \label{eq:6.45}
+    P_{n}(x) = \frac{1}{2^{n} n!} \Big( \dv{x} \Big)^{n} (x^2-1)^{n}
+\end{eqnarray}
+for Legendre's polynomial $P_{n}(x)$ to derive Schlaefli's formula
+\begin{eqnarray}
+    \label{eq:6.46}
+    P_{n}(z) = \frac{1}{2^{n} 2 \pi i} \oint \frac{(z'^2 - 1)^{n}}{(z' - z)^{n+1}} \dd{z'}
+.\end{eqnarray}
+}
+
+\prob{6.20}{
+Use a contour integral to evaluate the integral
+\begin{eqnarray}
+    \label{eq:6.20-int}
+    I_{a} = \int_{0}^{\pi} \frac{\dd{\theta}}{a + \cos{\theta}}, \quad a > 1
+.\end{eqnarray}
+}
+
+\prob{6.26}{
+Show that
+\begin{eqnarray}
+    \label{eq:6.26-int}
+    \int_{0}^{\infty} \cos{ax} e^{-x^2} \dd{x} = \frac{1}{2}\sqrt{\pi}e^{-a^2/4}
+.\end{eqnarray}
+}
+
+\prob{6.33}{
+The Bessel function $J_{n}$ is given by the integral
+\begin{eqnarray}
+    \label{eq:6.33-int}
+    J_{n}(x) = \frac{1}{2 \pi i} \oint_{C} e^{(x/2)(z - 1/z)} \frac{\dd{z}}{z^{n+1}} 
+\end{eqnarray}
+along a counterclockwise about the origin.
+Find the generating function for these Bessel functions, that is, the function $G(x,z)$ whose Laurent series has the $J_{n}(x)$'s as coefficients
+\begin{eqnarray}
+    \label{eq:gen-func-Bessel-def}
+    G(x,z) = \sum_{n=-\infty}^{\infty} J_{n}(x) z^{n} 
+.\end{eqnarray}
+}
+
+\prob{6.34}{
+Show that the Heaviside function $\theta(y) = (y + |y|)/(2|y|)$ is given by the integral
+\begin{eqnarray}
+    \label{eq:theta-int-def}
+    \theta(y) = \frac{1}{2 \pi i} \int_{-\infty}^{\infty} e^{iyx} \frac{\dd{x}}{x - i\epsilon} 
+\end{eqnarray}
+in which $\epsilon$ is an infinitesimal positive number.
+}
+
+
+
+
+
+
+\end{document}
