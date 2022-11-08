@@ -135,6 +135,21 @@ Find the generating function for these Bessel functions, that is, the function $
 .\end{eqnarray}
 }
 
+The Laurent series of $G(x,z)$ (centered at the origin) is given as
+\begin{eqnarray}
+    \label{eq:Luarent-G}
+    G(x,z) = \sum_{n=-\infty}^{\infty} \Big[ \frac{1}{2 \pi i} \oint_{C} \frac{G(x,z')}{z'^{n+1}} \dd{z'} \Big] z^{n}
+.\end{eqnarray}
+Thus, since we want the coefficient of this Laurent series to be the Bessel functions, we must have that
+\begin{eqnarray}
+    \label{eq:generating-func}
+    \eqbox{
+    G(x,z) = e^{(x/2)(z - 1/z)} 
+}
+.\end{eqnarray}
+
+
+
 \prob{6.34}{
 Show that the Heaviside function $\theta(y) = (y + |y|)/(2|y|)$ is given by the integral
 \begin{eqnarray}
@@ -144,7 +159,29 @@ Show that the Heaviside function $\theta(y) = (y + |y|)/(2|y|)$ is given by the 
 in which $\epsilon$ is an infinitesimal positive number.
 }
 
-
+We can promote $x \mapsto z$ such that 
+\begin{eqnarray}
+    \label{eq:contour-int-heaviside}
+    \theta(y) = \frac{1}{2 \pi i} \oint_{C} e^{i x z} \frac{\dd{z}}{z - i\epsilon}
+,\end{eqnarray}
+where $C$ is the contour consisting of the line from $-R$ to $R$ (with $R \rightarrow \infty$) and a ghost contour which is a half-circle in either the upper or lower half plane (such that the integrand goes to zero along it).
+Observe that along the ghost contour $z = R\cos{\theta} + i R\sin{\theta}$, where $\theta \in [0,\pi]$ or $\theta \in [-\pi,0]$, so
+\begin{eqnarray}
+    \label{eq:exponential}
+    e^{i y z} = e^{i y R \cos{\theta}} e^{- y R \sin{\theta}}
+.\end{eqnarray}
+Hence, we choose the ghost contour in the upper half plane if $y > 0$ and the lower half plane if $y < 0$.
+Observe that the simple pole is at $z = i \epsilon$, which is in the upper half plane and $f(z) = 1/(z - i\epsilon)$ has residue $1$ at its pole, so
+\begin{eqnarray}
+    \label{eq:result-6.34}
+    \eqbox{
+        \theta(y) = \frac{1}{2 \pi i} \oint_{C} \frac{\dd{z}}{z - i \epsilon} = \begin{cases}
+            1 & y > 0 \\
+            0 & y < 0
+        \end{cases}
+    } 
+\end{eqnarray}
+since the pole is enclosed if $y > 0$ but not if $y < 0$.
 
 
 
